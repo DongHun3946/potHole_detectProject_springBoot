@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세이프 로드 : 회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 400px;
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            position: relative;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .note {
+            position: absolute;
+            right: 0;
+            top: 80px; /* h2 아래로 조금 내려줍니다 */
+            font-size: 12px;
+            color: #777;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 93%;
+            padding: 13px;
+            margin-bottom: 15px;
+            border: 3px solid #ccc;
+            border-radius: 6px; /* 입력칸 외곽선 둥글게 */
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #817f7e;
+            color: white;
+            font-size: 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .verification {
+            display: flex;
+            align-items: center;
+        }
+        .verification input[type="text"] {
+            flex: 1;
+        }
+        .verification button {
+            padding: 12px;
+            background-color: #4CAF50;
+            margin-top: -12px;
+            color: white;
+            font-size: 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .verification button:hover {
+            background-color: #45a049;
+        }
+        .phone-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .phone-group input[type="tel"] {
+            flex: 1;
+        }
+        .phone-group button {
+            padding: 14px;
+            margin-top: -12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 15px;
+            border-radius: 3px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .phone-group button:hover {
+            background-color: #45a049;
+        }
+        .note {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>세이프 로드</h2>
+    <div class="note">* 표시는 필수 항목입니다</div>
+    <form th:action="@{/user/signup}" th:object="${UserCreateForm}" method="post">
+        <label for="name">이름(실명) *</label>
+        <input type="text" th:field="*{username}" id="name" name="name">
+
+        <label for="userID">아이디 *</label>
+        <input type="text" th:field="*{userID}" id="userID" name="userID">
+
+        <label for="password">비밀번호(8~16자의 영문, 숫자, 특수기호) *</label>
+        <input type="password" th:field="*{password1}" id="password" name="password" required>
+
+        <label for="password-confirm">비밀번호 확인 *</label>
+        <input type="password" th:field="*{password2}" id="password-confirm" name="password-confirm" required>
+
+        <label for="email">이메일 *</label>
+        <input type="email" th:field="*{email}" id="email" name="email">
+
+        <button type="submit" class="btn">회원가입</button>
+    </form>
+</div>
+</body>
+</html>
