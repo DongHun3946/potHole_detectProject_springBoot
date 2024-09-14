@@ -25,7 +25,7 @@ public class SecurityConfig {
                                 .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")    //로그인 페이지 경로 : /user/login
-                        .defaultSuccessUrl("/main")) // 로그인 성공 시 이동할 경로 : /main
+                        .defaultSuccessUrl("/pothole/main")) // 로그인 성공 시 이동할 경로 : /main
 
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) //사용자가 /user/logout 경로로 요청을 보내면 로그아웃 처리

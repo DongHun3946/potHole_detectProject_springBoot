@@ -2,9 +2,186 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세이프 로드</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        /* Header */
+        header {
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        header img {    <!-- 큰 이미지 부분 -->
+            height: 40px;
+        }
+
+        nav a {         <!--포트홀 관리 통계 부분 -->
+            font-weight: bold;
+            text-decoration: none;
+            text-align: right;
+            color: black;
+            margin-left: 20px;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+        nav{
+            width: 25%;
+        }
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            margin-top: 80px;
+            height: 600px;
+            background: url('/static/main_image/mainimage.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* Content Section */
+        .content {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px;
+        }
+
+        .content-left {
+            flex: 1;
+            text-align: center;
+        }
+
+        .content-left img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .content-left h2 {
+            font-size: 32px;
+            margin-top: 20px;
+        }
+
+        .content-right {
+            flex: 1;
+            padding-left: 50px;
+        }
+
+        .content-right h3 {
+            font-size: 24px;
+        }
+
+        .content-right .people {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .content-right .people img {
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .content-right p {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: white;
+            border: 1px solid black;
+            color: black;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+        .Title{
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+<!-- Header -->
+<header>
+    <div>
+        <a th:href="@{/pothole/main}" class = "Title">세이프 로드</a>
+    </div>
+    <nav>
+        <a href="#">포트홀 관리</a>
+        <a href="#">통계</a>
+        <a>OOO님 환영합니다</a>
+        <a th:href="@{/user/login}">로그아웃</a>
+    </nav>
+</header>
 
+<!-- Hero Section -->
+<section class="hero">
+    <div>
+        <h1>Pothole</h1>
+        <p>we can manage outselves</p>
+    </div>
+</section>
+
+<!-- Content Section -->
+<section class="content">
+    <!-- Left content -->
+    <div class="content-left">
+        <img src="your-image-url.jpg" alt="Trip Image">
+        <h2>2022.04.12 - 2022.04.29</h2>
+        <p>OUR TRIP</p>
+        <p>Together to U.K</p>
+    </div>
+
+    <!-- Right content -->
+    <div class="content-right">
+        <h3>32 people went on a trip together!</h3>
+        <div class="people">
+            <img src="person1.jpg" alt="Person 1">
+            <img src="person2.jpg" alt="Person 2">
+            <img src="person3.jpg" alt="Person 3">
+            <img src="person4.jpg" alt="Person 4">
+            <img src="person5.jpg" alt="Person 5">
+        </div>
+        <p>Traveling, for me, is more than just a break from the mundane routine. Travel is a transformative experience that enriches my soul and expands properties.</p>
+        <a href="#" class="btn">SEE JOURNEY</a>
+    </div>
+</section>
 </body>
 </html>

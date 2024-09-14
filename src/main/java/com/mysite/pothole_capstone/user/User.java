@@ -27,6 +27,5 @@ public class User {
     @Column(unique = true)
     private String email;  //회원 이메일
 
-    @Builder.Default
     private boolean isManager = false; //관리자인지 일반회원인지 구별하는 변수
 }

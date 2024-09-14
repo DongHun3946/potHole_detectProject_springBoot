@@ -13,6 +13,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    public boolean isID_duplicate(String userID){
+        return userRepository.existsByUserID(userID);
+    }
+    public boolean isEmail_duplicate(String email){
+        return userRepository.existsByEmail(email);
+    }
     public User create(String username, String userid, String password, String email) {
         User siteuser = User.builder()
                 .username(username)
@@ -22,6 +28,7 @@ public class UserService {
                 .isManager(false)
                 .build();
         this.userRepository.save(siteuser);
+
         return siteuser;
     }
     public User getUser(String userID){ //회원 정보를 얻기 위함

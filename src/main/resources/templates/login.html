@@ -37,6 +37,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 16px;
         }
 
         .login-container input[type="submit"] {
@@ -48,6 +49,7 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
         }
 
         .login-container input[type="submit"]:hover {
@@ -58,7 +60,7 @@
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .login-container a {
@@ -69,15 +71,16 @@
         .login-container a:hover {
             text-decoration: underline;
         }
+
     </style>
 </head>
 <body>
 <div class="login-container">
     <h2>세이프 로드</h2>
-    <form action="/login" method="POST">
+    <form th:action="@{/user/login}" method="POST">
         <input type="text" name="username" placeholder="ID" required>
         <input type="password" name="password" placeholder="PASSWORD" required>
-        <input type="submit" value="로그인">
+        <input type="submit" th:href="@{/pothole/main}" value="로그인">
     </form>
     <div class="options">
         <a href="findID">아이디찾기</a>

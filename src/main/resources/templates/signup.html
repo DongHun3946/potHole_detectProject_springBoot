@@ -17,22 +17,24 @@
         .container {
             width: 400px;
             background-color: white;
-            padding: 20px;
+            padding: 40px;
             border: 1px solid #ddd;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             position: relative;
         }
-        h2 {
+        h1 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
+            margin-top: 10px;
         }
         .note {
             position: absolute;
-            right: 0;
-            top: 80px; /* h2 아래로 조금 내려줍니다 */
+            right: 30px;
+            top: 110px;
             font-size: 12px;
             color: #777;
+
         }
         label {
             display: block;
@@ -45,9 +47,10 @@
         input[type="tel"] {
             width: 93%;
             padding: 13px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             border: 3px solid #ccc;
-            border-radius: 6px; /* 입력칸 외곽선 둥글게 */
+            font-size: 16px;
+            border-radius: 6px;
         }
         .btn {
             width: 100%;
@@ -62,77 +65,56 @@
         .btn:hover {
             background-color: #45a049;
         }
-        .verification {
-            display: flex;
-            align-items: center;
+        .error p {
+            color: red;
+            font-size: 14px;
+            margin: 5px 0;
         }
-        .verification input[type="text"] {
-            flex: 1;
-        }
-        .verification button {
-            padding: 12px;
-            background-color: #4CAF50;
-            margin-top: -12px;
-            color: white;
-            font-size: 15px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        .verification button:hover {
-            background-color: #45a049;
-        }
-        .phone-group {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .phone-group input[type="tel"] {
-            flex: 1;
-        }
-        .phone-group button {
-            padding: 14px;
-            margin-top: -12px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            font-size: 15px;
-            border-radius: 3px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-        .phone-group button:hover {
-            background-color: #45a049;
-        }
-        .note {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 12px;
-            color: #888;
+        .error input {
+            border-color: red;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h2>세이프 로드</h2>
+    <h1>세이프 로드</h1>
     <div class="note">* 표시는 필수 항목입니다</div>
-    <form th:action="@{/user/signup}" th:object="${UserCreateForm}" method="post">
+    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+
         <label for="name">이름(실명) *</label>
-        <input type="text" th:field="*{username}" id="name" name="name">
+        <input type="text" th:field="*{username}" id="name" name="name" required placeholder="이름을 입력해주세요.">
+        <div th:if="${#fields.hasErrors('username')}" class="error">
+            <p th:errors="*{username}"></p>
+        </div>
 
         <label for="userID">아이디 *</label>
-        <input type="text" th:field="*{userID}" id="userID" name="userID">
+        <input type="text" th:field="*{userID}" id="userID" name="userID" required placeholder="아이디를 입력해주세요.">
+        <div th:if="${#fields.hasErrors('userID')}" class="error">
+            <p th:errors="*{userID}"></p>
+        </div>
 
         <label for="password">비밀번호(8~16자의 영문, 숫자, 특수기호) *</label>
-        <input type="password" th:field="*{password1}" id="password" name="password" required>
+        <input type="password" th:field="*{password1}" id="password" name="password1" required placeholder="비밀번호를 입력해주세요.">
+        <div th:if="${#fields.hasErrors('password1')}" class="error">
+            <p th:errors="*{password1}"></p>
+        </div>
 
         <label for="password-confirm">비밀번호 확인 *</label>
-        <input type="password" th:field="*{password2}" id="password-confirm" name="password-confirm" required>
+        <input type="password" th:field="*{password2}" id="password-confirm" name="password2" required placeholder="비밀번호를 한 번 더 입력해주세요.">
+        <div th:if="${#fields.hasErrors('password2')}" class="error">
+            <p th:errors="*{password2}"></p>
+        </div>
 
         <label for="email">이메일 *</label>
-        <input type="email" th:field="*{email}" id="email" name="email">
+        <input type="email" th:field="*{email}" id="email" name="email" required placeholder="이메일을 입력해주세요.">
+        <div th:if="${#fields.hasErrors('email')}" class="error">
+            <p th:errors="*{email}"></p>
+        </div>
+
+        <!-- 전역 오류 메시지 표시 -->
+        <div th:if="${#fields.hasGlobalErrors()}" class="error">
+            <p th:errors="${#fields.globalErrors}"></p>
+        </div>
 
         <button type="submit" class="btn">회원가입</button>
     </form>
