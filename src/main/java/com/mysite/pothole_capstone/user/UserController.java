@@ -31,11 +31,12 @@ public class UserController {
                     "2개의 패스워드가 일치하지 않습니다.");
             return "signup";
         }
-        // 아이디 및 이메일 중복 여부 검사
+        // 아이디 중복 여부 검사
         if (userService.isID_duplicate(userCreateForm.getUserID())) {
             bindingResult.rejectValue("userID", "duplicate", "이미 존재하는 아이디입니다.");
             return "signup";
         }
+        // 이메일 중복 여부 검사
         if (userService.isEmail_duplicate(userCreateForm.getEmail())) {
             bindingResult.rejectValue("email", "duplicate", "이미 존재하는 이메일입니다.");
             return "signup";
