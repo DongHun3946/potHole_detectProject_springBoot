@@ -22,6 +22,10 @@
   ![image](https://github.com/user-attachments/assets/cde23140-e07c-4546-a553-71a8f8636fe5)
 - 회원가입 화면
   ![image](https://github.com/user-attachments/assets/1631e538-0d31-44a9-849f-569e4ca9852a)
+- 메인 화면
+  ![image](https://github.com/user-attachments/assets/c0015b16-acfd-46f9-9721-2790c120edf1)
+- 포트홀 관리 화면
+  ![image](https://github.com/user-attachments/assets/a9700d45-37d8-4ee2-b8ce-dc1bde25b06a)
 
 ## 📌 주요 기능
 
