@@ -32,4 +32,4 @@
 ## 📌 배운점
 
 ## ✒️ API
-- 사용한 API : <https://data.seoul.go.kr/dataList/OA-21778/A/1/datasetView.do>
+- 사용한 API : 
