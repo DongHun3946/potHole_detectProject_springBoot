@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Denied</title>
+    <script>
+        window.onload = function() {
+            alert("관리자만 접근 가능합니다."); // 경고창 출력
+            window.location.href = "/pothole/main"; // 경고창 확인 후 메인 페이지로 이동
+        };
+    </script>
+</head>
+<body>
+<h1>Access Denied</h1>
+<p>You are not authorized to access this page.</p>
+</body>
+</html>

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -31,12 +33,14 @@ public class UserService {
 
         return siteuser;
     }
-    public User getUser(String userID){ //회원 정보를 얻기 위함
-        Optional<User> siteUser = this.userRepository.findByUserID(userID);
-        if(siteUser.isPresent()){
-            return siteUser.get();
-        }else{
-            throw new DataNotFoundException("유저 정보가 없습니다.");
+
+    public String findId(String username, String email){ //회원 아이디를 찾기 위함
+        Optional<User> oa = this.userRepository.findByUsernameAndEmail(username, email);
+        if(oa.isPresent()){
+            return oa.get().getUserID();
+        }
+        else{
+            return null;
         }
     }
 }

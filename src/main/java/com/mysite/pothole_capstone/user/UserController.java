@@ -58,8 +58,23 @@ public class UserController {
         }
         return "redirect:/";
     }
-
     @GetMapping("/login")
     public String login(){return "login";}
+
+    @GetMapping("/findID")
+    public String findId(){
+        return "findId";
+    }
+    @PostMapping("/findID")
+    public String findId(@RequestParam String username, @RequestParam String email, Model model){
+        String requestId = userService.findId(username, email);
+        model.addAttribute("requestId", requestId);
+        return "findId_result";
+    }
+    @GetMapping("/findPW")
+    public String findPw(){
+        return "findPasswd";
+    }
+
 
 }

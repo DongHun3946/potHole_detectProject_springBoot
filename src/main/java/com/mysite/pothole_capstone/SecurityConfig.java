@@ -22,6 +22,8 @@ public class SecurityConfig {
                 //인증하지 않은 모든 페이지의 요청을 허락한다.
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
+                                .requestMatchers("/pothole/manage").hasRole("MANAGER")
+                                .requestMatchers("/pothole/stats").hasRole("MANAGER")
                                 .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")    //로그인 페이지 경로 : /user/login
@@ -30,7 +32,9 @@ public class SecurityConfig {
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) //사용자가 /user/logout 경로로 요청을 보내면 로그아웃 처리
                         .logoutSuccessUrl("/user/login")  //로그아웃 후 이동할 경로 : /login
-                        .invalidateHttpSession(true));    //로그아웃 후 세션을 무효화
+                        .invalidateHttpSession(true))    //로그아웃 후 세션을 무효화
+                .exceptionHandling((exceptionHandling) -> exceptionHandling
+                        .accessDeniedPage("/pothole/access-denied"));
         return http.build();
     }
     @Bean

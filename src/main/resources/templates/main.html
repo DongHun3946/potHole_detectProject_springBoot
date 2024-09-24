@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>세이프 로드</title>
     <style>
         body {
@@ -10,6 +10,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
+
         /* Header */
         header {
             background-color: white;
@@ -17,17 +18,19 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
         }
-        header img {    <!-- 큰 이미지 부분 -->
-            height: 40px;
+
+        header img {
+        <!-- 큰 이미지 부분 --> height: 40px;
         }
-        nav a {         <!--포트홀 관리 통계 부분 -->
-            font-weight: bold;
+
+        nav a {
+        <!-- 포트홀 관리 통계 부분 --> font-weight: bold;
             text-decoration: none;
             text-align: right;
             color: black;
@@ -35,14 +38,15 @@
             font-size: 18px;
             padding-left: 10px;
         }
-        nav{
+
+        nav {
             width: 30%;
         }
+
         nav a:hover {
             color: #007BFF;
         }
 
-        /* Hero Section */
         .hero {
             position: relative;
             margin-top: 80px;
@@ -66,27 +70,72 @@
             margin-top: 20px;
         }
 
-        /* Content Section */
         .content {
             display: flex;
             justify-content: space-around;
             padding: 50px;
         }
 
-        .content-left {
+        .user-info {
             flex: 1;
             text-align: left;
+            display: block;
+            margin-bottom: 10px;
         }
 
-        .content-left h2 {
-            font-size: 28px;
-            margin-top: 8px;
-        }
-        .Title{
+        .Title {
             font-size: 20px;
             font-weight: bold;
             text-decoration: none;
-            color : black;
+            color: black;
+        }
+
+        /* 전체 테이블 스타일 */
+        .container {
+            width: 100%;
+            margin: 0 auto;
+
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        th {
+            padding: 10px;
+            text-align: center;
+            border: 5px solid #ddd;
+            background-color: #f2f2f2;
+        }
+
+        th:nth-child(1), td:nth-child(1) { /* 일련번호 */
+            width: 5%;
+        }
+
+        th:nth-child(2), td:nth-child(2) { /* 탐지 일자 */
+            width: 15%;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th:nth-child(3), td:nth-child(3),
+        th:nth-child(4), td:nth-child(4) { /* 위도, 경도 */
+            width: 15%;
+        }
+
+        th:nth-child(5), td:nth-child(5) { /* 주소 */
+            width: 30%;
+        }
+
+        th:nth-child(6), td:nth-child(6) { /* 상태 */
+            width: 10%;
+        }
+
+        th:nth-child(7), td:nth-child(7) { /* 이미지 */
+            width: 10%;
         }
     </style>
 </head>
@@ -94,7 +143,7 @@
 <!-- Header -->
 <header>
     <div>
-        <a th:href="@{/pothole/main}" class = "Title">세이프 로드</a>
+        <a class="Title" th:href="@{/pothole/main}">세이프 로드</a>
     </div>
     <nav>
         <a th:href="@{/pothole/manage}">포트홀 관리</a>
@@ -114,13 +163,13 @@
 
 <!-- Content Section -->
 <section class="content">
-    <!-- Left content -->
-    <div class="content-left">
-        <h2 th:text="${username} + '님의 신고내역'"></h2>
-    </div>
     <!-- Container with Table -->
     <div class="container">
         <table>
+            <div class="user-info">
+                <h2 th:text="${username} + '님의 신고내역'"></h2>
+            </div>
+
             <thead>
             <tr>
                 <th>일련번호</th>
@@ -132,11 +181,24 @@
                 <th>이미지</th>
             </tr>
             </thead>
+
             <tbody>
             </tbody>
         </table>
     </div>
 </section>
+<section class="content">
+    <div class="container">
+        <div class="user-info">
+            <h2 th:text="${username} + '님의 신고현황'"></h2>
+        </div>
 
+        <div>접수 중 : 건</div>
+        <div>접수 실패 : 건</div>
+        <div>접수 성공 : 건</div>
+        <div>수리 중 : 건</div>
+        <div>수리 완료 : 건</div>
+    </div>
+</section>
 </body>
 </html>
