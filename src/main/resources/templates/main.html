@@ -1,10 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Main</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>세이프 로드</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        header img {
+        <!-- 큰 이미지 부분 --> height: 40px;
+        }
+
+        nav a {
+        <!-- 포트홀 관리 통계 부분 --> font-weight: bold;
+            text-decoration: none;
+            text-align: right;
+            color: black;
+            margin-left: 20px;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+
+        nav {
+            width: 30%;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        .hero {
+            position: relative;
+            margin-top: 80px;
+            height: 600px;
+            background: url('/main_image/mainimage.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 80px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px;
+        }
+
+        .user-info {
+            flex: 1;
+            text-align: left;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .Title {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        /* 전체 테이블 스타일 */
+        .container {
+            width: 100%;
+            margin: 0 auto;
+
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto;
+        }
+
+        th {
+            padding: 10px;
+            text-align: center;
+            border: 5px solid #ddd;
+            background-color: #f2f2f2;
+        }
+
+        th:nth-child(1), td:nth-child(1) { /* 일련번호 */
+            width: 5%;
+        }
+
+        th:nth-child(2), td:nth-child(2) { /* 탐지 일자 */
+            width: 15%;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th:nth-child(3), td:nth-child(3),
+        th:nth-child(4), td:nth-child(4) { /* 위도, 경도 */
+            width: 15%;
+        }
+
+        th:nth-child(5), td:nth-child(5) { /* 주소 */
+            width: 30%;
+        }
+
+        th:nth-child(6), td:nth-child(6) { /* 상태 */
+            width: 10%;
+        }
+
+        th:nth-child(7), td:nth-child(7) { /* 이미지 */
+            width: 10%;
+        }
+    </style>
 </head>
 <body>
+<!-- Header -->
+<header>
+    <div>
+        <a class="Title" th:href="@{/pothole/main}">세이프 로드</a>
+    </div>
+    <nav>
+        <a th:href="@{/pothole/manage}">포트홀 관리</a>
+        <a th:href="@{/pothole/stats}">통계</a>
+        <a th:text="${username} + '님 환영합니다'"></a>
+        <a th:href="@{/user/login}">로그아웃</a>
+    </nav>
+</header>
 
+<!-- Hero Section -->
+<section class="hero">
+    <div>
+        <h1>Pothole</h1>
+        <p>we can manage outselves</p>
+    </div>
+</section>
+
+<!-- Content Section -->
+<section class="content">
+    <!-- Container with Table -->
+    <div class="container">
+        <table>
+            <div class="user-info">
+                <h2 th:text="${username} + '님의 신고내역'"></h2>
+            </div>
+
+            <thead>
+            <tr>
+                <th>일련번호</th>
+                <th>탐지 일자</th>
+                <th>위도</th>
+                <th>경도</th>
+                <th>주소</th>
+                <th>상태</th>
+                <th>이미지</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</section>
+<section class="content">
+    <div class="container">
+        <div class="user-info">
+            <h2 th:text="${username} + '님의 신고현황'"></h2>
+        </div>
+
+        <div>접수 중 : 건</div>
+        <div>접수 실패 : 건</div>
+        <div>접수 성공 : 건</div>
+        <div>수리 중 : 건</div>
+        <div>수리 완료 : 건</div>
+    </div>
+</section>
 </body>
 </html>

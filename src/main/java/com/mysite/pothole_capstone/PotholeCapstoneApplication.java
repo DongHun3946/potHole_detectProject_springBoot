@@ -8,5 +8,4 @@ public class PotholeCapstoneApplication {
     public static void main(String[] args) {
         SpringApplication.run(PotholeCapstoneApplication.class, args);
     }
-
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>세이프 로드 : 로그인</title>
+    <title>세이프 로드 : 아이디찾기</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -29,7 +29,7 @@
         }
 
         .login-container input[type="text"],
-        .login-container input[type="password"] {
+        .login-container input[type="email"] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -56,19 +56,12 @@
             background-color: #45a049;
         }
 
-        .login-container .options {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            font-size: 16px;
-        }
-
-        .login-container a {
+        .login-links a {
             color: #000;
             text-decoration: none;
         }
 
-        .login-container a:hover {
+        .login-links a:hover {
             text-decoration: underline;
         }
 
@@ -77,16 +70,11 @@
 <body>
 <div class="login-container">
     <h2>세이프 로드</h2>
-    <form th:action="@{/user/login}" method="POST">
-        <input type="text" name="username" placeholder="ID" required>
-        <input type="password" name="password" placeholder="PASSWORD" required>
-        <input type="submit" th:href="@{/pothole/main}" value="로그인">
+    <form th:action="@{/user/findID}" method="POST">
+        <input type="text" name="username" placeholder="이름을 입력하세요." required>
+        <input type="email" name="email" placeholder="이메일을 입력하세요." required>
+        <input type="submit" value="아이디 찾기">
     </form>
-    <div class="options">
-        <a href="findID">아이디찾기</a>
-        <a href="findPW">비밀번호찾기</a>
-        <a th:href="@{/user/signup}">회원가입</a>
-    </div>
 </div>
 </body>
 </html>

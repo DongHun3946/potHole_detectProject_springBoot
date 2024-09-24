@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 @RequiredArgsConstructor
@@ -19,7 +17,7 @@ public class UserController {
 
     @GetMapping("/signup") //회원가입을 위한 템플릿 렌더링
     public String signup(Model model){
-        model.addAttribute("UserCreateForm", new UserCreateForm());
+        model.addAttribute("userCreateForm", new UserCreateForm());
         return "signup";
     }
     @PostMapping("/signup") //회원가입 요청
@@ -31,6 +29,16 @@ public class UserController {
         if(!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())){
             bindingResult.rejectValue("password2", "passwordIncorrect",
                     "2개의 패스워드가 일치하지 않습니다.");
+            return "signup";
+        }
+        // 아이디 중복 여부 검사
+        if (userService.isID_duplicate(userCreateForm.getUserID())) {
+            bindingResult.rejectValue("userID", "duplicate", "이미 존재하는 아이디입니다.");
+            return "signup";
+        }
+        // 이메일 중복 여부 검사
+        if (userService.isEmail_duplicate(userCreateForm.getEmail())) {
+            bindingResult.rejectValue("email", "duplicate", "이미 존재하는 이메일입니다.");
             return "signup";
         }
         try{
@@ -50,8 +58,23 @@ public class UserController {
         }
         return "redirect:/";
     }
-
     @GetMapping("/login")
     public String login(){return "login";}
+
+    @GetMapping("/findID")
+    public String findId(){
+        return "findId";
+    }
+    @PostMapping("/findID")
+    public String findId(@RequestParam String username, @RequestParam String email, Model model){
+        String requestId = userService.findId(username, email);
+        model.addAttribute("requestId", requestId);
+        return "findId_result";
+    }
+    @GetMapping("/findPW")
+    public String findPw(){
+        return "findPasswd";
+    }
+
 
 }
