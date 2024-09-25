@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration     //스프링의 설정 클래스임을 나타내는 어노테이션
@@ -27,7 +28,8 @@ public class SecurityConfig {
                                 .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")    //로그인 페이지 경로 : /user/login
-                        .defaultSuccessUrl("/pothole/main")) // 로그인 성공 시 이동할 경로 : /main
+                        .defaultSuccessUrl("/pothole/main") // 로그인 성공 시 이동할 경로 : /main
+                        .failureHandler(myFailureHandler()))
 
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout")) //사용자가 /user/logout 경로로 요청을 보내면 로그아웃 처리
@@ -43,5 +45,12 @@ public class SecurityConfig {
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
         return authenticationConfiguration.getAuthenticationManager(); //기본 인증 관리자를 가져와 반환
+    }
+    @Bean
+    public AuthenticationFailureHandler myFailureHandler() {
+        return (request, response, exception) -> {
+            request.getSession().setAttribute("errorMessage", "로그인 정보가 일치하지 않습니다.");
+            response.sendRedirect("/user/login");  // 오류 메시지를 포함하여 로그인 페이지로 리다이렉트
+        };
     }
 }

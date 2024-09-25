@@ -26,15 +26,4 @@ public class PotholeService {
         this.potholeRepository.save(oa);
         return oa;
     }
-    public Pothole getPothole(Integer id){
-        Optional<Pothole> oa = this.potholeRepository.findById(id);
-        if(oa.isPresent()){
-            return oa.get();
-        }
-        else{
-            throw new DataNotFoundException("pothole not found");
-        }
-    }
-
-
 }

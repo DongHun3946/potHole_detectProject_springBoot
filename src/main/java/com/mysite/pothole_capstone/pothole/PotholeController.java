@@ -4,6 +4,7 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import com.mysite.pothole_capstone.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import java.security.Principal;
@@ -17,6 +18,7 @@ public class PotholeController {
         model.addAttribute("username", username);
         return "main";
     }
+
     @GetMapping("/manage")
     public String manage(Model model, Principal principal)
     {
@@ -24,7 +26,7 @@ public class PotholeController {
         model.addAttribute("username", username);
         return "manage";
     }
-    @GetMapping("/access-denied")
+    @GetMapping("/access-denied") //관리자만 허용하기 위함
     public String accessDenied(){
         return "accessDenied";
     }
@@ -33,4 +35,5 @@ public class PotholeController {
     public String stats(){
         return "stats";
     }
+
 }

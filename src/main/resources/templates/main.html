@@ -26,21 +26,25 @@
         }
 
         header img {
-        <!-- 큰 이미지 부분 --> height: 40px;
-        }
-
-        nav a {
-        <!-- 포트홀 관리 통계 부분 --> font-weight: bold;
-            text-decoration: none;
-            text-align: right;
-            color: black;
-            margin-left: 20px;
-            font-size: 18px;
-            padding-left: 10px;
+        <!-- 큰 이미지 부분 -->
+            height: 40px;
         }
 
         nav {
-            width: 30%;
+            display: flex; /* Flexbox 사용 */
+            align-items: center; /* 세로 정렬 */
+            justify-content: flex-start; /* 오른쪽 정렬 */
+            width: 40%; /* 너비를 늘려 여유 공간 추가 */
+        }
+
+        nav a {
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+            margin-left: 20px; /* 왼쪽 여백을 줄여서 더 많은 공간 확보 */
+            font-size: 18px;
+            padding-left: 10px;
+            white-space: nowrap; /* 텍스트가 넘치지 않도록 설정 */
         }
 
         nav a:hover {
@@ -84,10 +88,11 @@
         }
 
         .Title {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: bold;
             text-decoration: none;
-            color: black;
+            color: green;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
         }
 
         /* 전체 테이블 스타일 */
@@ -149,6 +154,7 @@
         <a th:href="@{/pothole/manage}">포트홀 관리</a>
         <a th:href="@{/pothole/stats}">통계</a>
         <a th:text="${username} + '님 환영합니다'"></a>
+        <a th:href="@{/user/account}">개인정보수정</a>
         <a th:href="@{/user/login}">로그아웃</a>
     </nav>
 </header>
