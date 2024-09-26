@@ -12,6 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 public class UserModifyForm {
 
+
     @Size(min = 8, max = 16)
     @Pattern(regexp="^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@#$%^&+=]).*$", message="비밀번호는 영문, 숫자, 특수문자를 각각 포함해야 합니다.")
     @NotEmpty
@@ -20,7 +21,4 @@ public class UserModifyForm {
     @NotEmpty
     private String password2;
 
-    @NotEmpty
-    @Email
-    private String email;
 }

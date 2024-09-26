@@ -68,14 +68,14 @@ public class UserService {
             return null;
         }
     }
-    public User modifyEmailOrPasswd(String userid, String username, String email, String passwd){ //기존 비밀번호에서 임시 비밀번호로 변경
+    public User modifyPasswd(String userid, String username, String passwd){ //기존 비밀번호에서 임시 비밀번호로 변경
         Optional<User> oa = this.userRepository.findByUserIDAndUsername(userid, username);
         if(oa.isPresent()){
             User siteuser = User.builder()
                     .id(oa.get().getId())
                     .username(oa.get().getUsername())
                     .userID(oa.get().getUserID())
-                    .email(email)
+                    .email(oa.get().getEmail())
                     .password(passwordEncoder.encode(passwd))
                     .build();
             this.userRepository.save(siteuser);

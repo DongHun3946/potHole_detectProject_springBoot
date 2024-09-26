@@ -95,23 +95,28 @@ public class UserController {
     }
     @PostMapping("/account")
     public String account(@Valid UserModifyForm userModifyForm,
-                          BindingResult bindingResult, Principal principal){
+                          BindingResult bindingResult, Principal principal, Model model){
         String userID = principal.getName();
         User user = userService.findUser(userID);
 
         if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach(error -> {
+                System.out.println(error.getDefaultMessage());
+            });
+            String user_1 = user.getUserID();
+            String user_2 = user.getUsername();
+            String user_3 = user.getEmail();
+            model.addAttribute("userId", user_1);
+            model.addAttribute("userName", user_2);
+            model.addAttribute("userEmail", user_3);
             return "modify_account";
         }
         if(!userModifyForm.getPassword1().equals(userModifyForm.getPassword2())){
             bindingResult.rejectValue("password2", "passwordIncorrect",
                     "2개의 패스워드가 일치하지 않습니다.");
         }
-        if(userService.isEmail_duplicate(userModifyForm.getEmail())){
-            bindingResult.rejectValue("email","emailDuplicate",
-                    "이미 등록된 이메일 입니다.");
-        }
         try{
-            userService.modifyEmailOrPasswd(user.getUserID(), user.getUsername(), userModifyForm.getEmail(), userModifyForm.getPassword1());
+            userService.modifyPasswd(user.getUserID(), user.getUsername(), userModifyForm.getPassword1());
         }
         catch(DataNotFoundException e){
             e.printStackTrace();

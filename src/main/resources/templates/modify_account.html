@@ -63,6 +63,9 @@
         .button-cancel:hover{
             background-color: #cccccc;
         }
+        .error{
+            color : red;
+        }
     </style>
 </head>
 <body>
@@ -82,7 +85,7 @@
 
         <div class="form-group">
             <label for="password1">비밀번호 (8~16자의 영문, 숫자, 특수기호)</label>
-            <input type="password" id="password1"  required>
+            <input type="password" id="password1" th:field="*{password1}" required>
             <div th:if="${#fields.hasErrors('password1')}" class="error">
                 <p th:errors="*{password1}"></p>
             </div>
@@ -90,19 +93,18 @@
 
         <div class="form-group">
             <label for="password2">비밀번호 확인</label>
-            <input type="password" id="password2" required>
+            <input type="password" id="password2" th:field="*{password2}" required>
             <div th:if="${#fields.hasErrors('password2')}" class="error">
                 <p th:errors="*{password2}"></p>
             </div>
         </div>
 
+
         <div class="form-group">
             <label for="email">이메일</label>
-            <input type="email" id="email" th:value="${userEmail}" required>
-            <div th:if="${#fields.hasErrors('email')}" class="error">
-                <p th:errors="*{email}"></p>
-            </div>
+            <input type="email" id="email" th:value="${userEmail}" required readonly>
         </div>
+
         <!-- 전역 오류 메시지 표시 -->
         <div th:if="${#fields.hasGlobalErrors()}" class="error">
             <p th:errors="${#fields.globalErrors}"></p>
