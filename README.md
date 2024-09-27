@@ -16,7 +16,8 @@
 - DataBase : 
 - WS/WAS : 
 ## 📝 프로젝트 아키텍쳐
-![image](https://github.com/user-attachments/assets/5207f197-c22d-44e0-9fce-86eda0dc804b)
+![image](https://github.com/user-attachments/assets/b81af55b-b2ee-42a5-b36a-88648d86acf5)
+
 
 ## 📝 와이어프레임(화면 구성)
 - 로그인 화면
