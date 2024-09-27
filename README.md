@@ -1,7 +1,7 @@
 # 캡스톤디자인_포트홀 탐지 및 자동신고 시스템
 
 ## 👨‍🏫 프로젝트 소개
-
+카메라가 포트홀을 탐지하면 자동으로 서버에 신고해주는 시스템
 ## ⏲️ 개발 기간
 - 2024/09/01~
 ## 🧑‍🤝‍🧑 개발자 소개
@@ -12,9 +12,9 @@
 - Framework : SpringBoot 3.3.1
 - ORM : JPA
 ## ⚙️ 기술 스택
-- Server : 
-- DataBase : 
-- WS/WAS : 
+- Server : Amazon EC2
+- DataBase : Amazon RDS(mysql)
+- WS/WAS : Tomcat
 ## 📝 프로젝트 아키텍쳐
 ![image](https://github.com/user-attachments/assets/b81af55b-b2ee-42a5-b36a-88648d86acf5)
 
