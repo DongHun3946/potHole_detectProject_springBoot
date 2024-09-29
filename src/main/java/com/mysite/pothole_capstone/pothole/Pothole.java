@@ -1,7 +1,6 @@
 package com.mysite.pothole_capstone.pothole;
 
 import com.mysite.pothole_capstone.user.User;
-import com.mysite.pothole_capstone.pothole.PotImage;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.*;
@@ -29,8 +28,7 @@ public class Pothole {
 
     private LocalDateTime detectDate; //탐지일자
 
-    @OneToMany(mappedBy = "pothole", cascade = CascadeType.ALL)
-    private List<PotImage> image;
+    private String imagePath;
 
     @ManyToOne
     private User user; //회원

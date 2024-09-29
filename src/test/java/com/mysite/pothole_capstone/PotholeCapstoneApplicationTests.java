@@ -20,16 +20,7 @@ class PotholeCapstoneApplicationTests {
 
     @Test
     void contextLoads() {
-        Pothole p = Pothole.builder()
-                .latitude()
-                .longitude()
-                .address()
-                .state()
-                .detectDate()
-                .image()
-                .user()
-                .build();
-        this.potholeRepository.save(p);
+
     }
 }
 /*

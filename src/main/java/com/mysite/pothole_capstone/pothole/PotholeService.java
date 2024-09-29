@@ -13,14 +13,14 @@ public class PotholeService {
     private final PotholeRepository potholeRepository;
 
     public Pothole create(double latitude, double longitude, String addr,
-                          String state, List<PotImage> imgList, User findUser){
+                          String state, String imgPath, User findUser){
         Pothole oa = Pothole.builder()
                 .latitude(latitude)
                 .longitude(longitude)
                 .address(addr)
                 .state(state)
                 .detectDate(LocalDateTime.now())
-                .image(imgList)
+                .imagePath(imgPath)
                 .user(findUser)
                 .build();
         this.potholeRepository.save(oa);

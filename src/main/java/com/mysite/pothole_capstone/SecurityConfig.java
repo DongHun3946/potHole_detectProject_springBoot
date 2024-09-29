@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,10 +17,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration     //스프링의 설정 클래스임을 나타내는 어노테이션
 @EnableWebSecurity //스프링시큐리티를 활성화시키는 어노테이션
 @EnableMethodSecurity(prePostEnabled = true)
-public class SecurityConfig {
+public class SecurityConfig{
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/upload")) // api/upload 경로에만 csrf 비활성화
                 //인증하지 않은 모든 페이지의 요청을 허락한다.
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
