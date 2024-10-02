@@ -42,14 +42,20 @@ public class PotholeController {
     }
 
     @GetMapping("/manage")
-    public String manage1(Model model, Principal principal, @RequestParam(value = "select", required = false) String select,
+    public String manage1(Model model, Principal principal,
+                          @RequestParam(value = "select", defaultValue = "null") String select,
                          @RequestParam(value = "page", defaultValue = "0") int page) {
         String userId = principal.getName();
         User user = userService.findUser(userId);
         String username = user.getUsername();
         model.addAttribute("username", username);
+        Page<Pothole> paging = null;
+        if(select.equals("null") || select.equals("6")){
+            paging = this.potholeService.getListAll(page);
+        }else{
+            paging = this.potholeService.getSelectList(select, page);
+        }
 
-        Page<Pothole> paging = this.potholeService.getListAll(page);
         model.addAttribute("paging", paging);
         model.addAttribute("selectedOption", select); // select 값 모델에 추가
         return "manage";
@@ -64,31 +70,7 @@ public class PotholeController {
         model.addAttribute("username", username);
         model.addAttribute("selectedOption", select);
 
-        Page<Pothole> oa = null;
-
-        switch (select) {
-            case "1":
-                oa = this.potholeService.getRadioList("접수 중", page);
-                break;
-            case "2":
-                oa = this.potholeService.getRadioList("접수 실패", page);
-                break;
-            case "3":
-                oa = this.potholeService.getRadioList("접수 완료", page);
-                break;
-            case "4":
-                oa = this.potholeService.getRadioList("수리 중", page);
-                break;
-            case "5":
-                oa = this.potholeService.getRadioList("수리 완료", page);
-                break;
-            case "6":
-                oa = this.potholeService.getListAll(page);
-                break;
-            default:
-                break;
-        }
-
+        Page<Pothole> oa = this.potholeService.getSelectList(select, page);
         model.addAttribute("paging", oa);
         return "manage";
     }

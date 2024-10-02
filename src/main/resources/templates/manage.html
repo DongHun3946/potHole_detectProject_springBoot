@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>세이프로드 : 포트홀 관리</title>
+    <!-- Leaflet.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
     <style>
         body {
             padding-top: 10px; /* header의 높이만큼 패딩 추가 */
@@ -98,7 +101,7 @@
 
         .nav-section {
             height: 445px;
-            padding: 10px;
+            padding: 5px;
         }
 
         .table-border {
@@ -198,6 +201,11 @@
             height: 50px;
             margin-top: 60px; /* header 높이만큼 마진 추가 */
         }
+        #map {
+            height: 445px;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body>
@@ -218,7 +226,7 @@
 <div id="header">
     <form th:action="@{/pothole/manage}" method="post" style="margin-right: 15px;">
         <input type="radio" name="select" value="1" class="checkbox-spacing"
-               th:checked="${selectedOption == '1'}">접수 중
+               th:checked="${selectedOption == '1'}">접수 중 <!--selectedOption이 1일 경우 이 버튼이 클릭됨-->
         <input type="radio" name="select" value="2" class="checkbox-spacing"
                th:checked="${selectedOption == '2'}">접수 실패
         <input type="radio" name="select" value="3" class="checkbox-spacing"
@@ -227,18 +235,18 @@
                th:checked="${selectedOption == '4'}">수리 중
         <input type="radio" name="select" value="5" class="checkbox-spacing"
                th:checked="${selectedOption == '5'}">수리 완료
-        <input type="radio" name="select" value="6" class="checkbox-spacing">초기화
+        <input type="radio" name="select" value="6" class="checkbox-spacing"
+               th:checked="${selectedOption == '6'}">초기화
         <button type="submit" style="margin-left: 10px;">검색</button>
     </form>
 </div>
 
 <div id="nav">
     <div class="nav-section" id="nav-top">
-        <h2>상단 Nav 영역</h2>
+        <div id="map"></div>
     </div>
     <div class="nav-section" id="nav-bottom">
-        <!-- 하단 Nav 영역에 이미지가 표시될 공간 -->
-        <img id="image-display" src="" alt="클릭된 이미지" style="display:none;">
+        <img id="image-display" src="" alt="포트홀 이미지" style="display:none;">
     </div>
 </div>
 
@@ -275,6 +283,7 @@
         </tr>
         </tbody>
     </table>
+
     <div class="pagination">
         <ul>
             <li th:if="${paging.hasPrevious()}">
@@ -302,6 +311,24 @@
         imageDisplay.src = imagePath;
         imageDisplay.style.display = 'block';
     }
+</script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    window.onload = function() {
+        //HTML에서 id가 map인 요소에 지도 생성 , 13은 줌 레벨
+        var map = L.map('map').setView([37.5665, 126.9780], 13);
+
+        // 오픈스트리트맵 타일 이미지를 가져옴 z : 줌 레벨, x : x좌표, y : y좌표
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19, //최대 줌 레벨
+            //저작권 정보 및 기여자 정보 표시(사용 규정상 반드시 추가해야됨)
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        //지도에 마커 추가
+        var marker = L.marker([37.5665, 126.9780]).addTo(map);
+        //마커에 팝업 연결
+        marker.bindPopup("<b>일련번호</b><br>대한민국의 수도").openPopup();
+    };
 </script>
 </body>
 </html>

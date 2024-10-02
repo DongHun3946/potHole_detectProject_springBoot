@@ -31,8 +31,31 @@ public class PotholeService {
         oa.add(this.potholeRepository.countByUserAndStateContaining(user, "수리 완료"));
         return oa;
     }
-    public Page<Pothole> getRadioList(String state, int page){
+    public Page<Pothole> getSelectList(String state, int page){
         Pageable pageable = PageRequest.of(page, 11);
-        return this.potholeRepository.findByState(state, pageable);
+        Page<Pothole> oa = null;
+        switch (state) {
+            case "1":
+                oa = this.potholeRepository.findByState("접수 중", pageable);
+                break;
+            case "2":
+                oa = this.potholeRepository.findByState("접수 실패", pageable);
+                break;
+            case "3":
+                oa = this.potholeRepository.findByState("접수 완료", pageable);
+                break;
+            case "4":
+                oa = this.potholeRepository.findByState("수리 중", pageable);
+                break;
+            case "5":
+                oa = this.potholeRepository.findByState("수리 완료", pageable);
+                break;
+            case "6":
+                oa = this.potholeRepository.findAll(pageable);
+                break;
+            default:
+                break;
+        }
+        return oa;
     }
 }
