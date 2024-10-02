@@ -3,6 +3,8 @@ package com.mysite.pothole_capstone.pothole;
 import com.mysite.pothole_capstone.user.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.*;
 import java.time.LocalDateTime;
 
@@ -26,6 +28,7 @@ public class Pothole {
     @Column(columnDefinition = "TEXT")
     private String state;  //상태
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime detectDate; //탐지일자
 
     private String imagePath;

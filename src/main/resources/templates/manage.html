@@ -5,13 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>세이프로드 : 포트홀 관리</title>
     <style>
-        .Title {
-            font-size: 20px;
-            font-weight: bold;
-            text-decoration: none;
-            color: black;
+        body {
+            padding-top: 10px; /* header의 높이만큼 패딩 추가 */
         }
-
         header {
             background-color: white;
             padding: 20px;
@@ -25,7 +21,72 @@
             z-index: 100;
         }
 
-        nav a {
+        nav {
+            width: 30%;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            padding: 2px 10px 2px 10px;
+            text-align: center;
+            border: 3px solid #ddd;
+            background-color: #f2f2f2;
+        }
+
+        th:nth-child(1), td:nth-child(1) {
+            width: 5%;
+        }
+
+        th:nth-child(2), td:nth-child(2) {
+            width: 15%;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th:nth-child(3),
+        th:nth-child(4) {
+            width: 15%;
+        }
+
+        th:nth-child(5) {
+            width: 30%;
+        }
+
+        th:nth-child(6) {
+            width: 10%;
+        }
+
+        th:nth-child(7) {
+            width: 5%;
+        }
+
+        th:nth-child(8) {
+            width: 5%;
+        }
+
+        .Title {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav {
             font-weight: bold;
             text-decoration: none;
             text-align: right;
@@ -35,64 +96,68 @@
             padding-left: 10px;
         }
 
-        nav {
-            width: 30%;
+        .nav-section {
+            height: 445px;
+            padding: 10px;
         }
 
-        nav a:hover {
-            color: #007BFF;
-        }
-        table {
-            width: 100%;
+        .table-border {
+            border: 1px solid black;
             border-collapse: collapse;
         }
-        th, td {
-            border: 1px solid black; /* 테이블 외곽선 */
-            padding: 8px;
-            text-align: center;
+
+        .table-border th,
+        .table-border td {
+            border: 1px solid black;
         }
-        th {
-            padding: 2px 10px 2px 10px;
-            text-align: center;
-            border: 3px solid #ddd;
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .pagination li {
+            display: inline;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            border: 1px solid #ddd;
             background-color: #f2f2f2;
+            border-radius: 5px;
         }
 
-        th:nth-child(1), td:nth-child(1) { /* 일련번호 */
-            width: 5%;
-        }
-
-        th:nth-child(2), td:nth-child(2) { /* 탐지 일자 */
-            width: 15%;
-            word-wrap: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        th:nth-child(3), td:nth-child(3),
-        th:nth-child(4), td:nth-child(4) { /* 위도, 경도 */
-            width: 15%;
-        }
-
-        th:nth-child(5), td:nth-child(5) { /* 주소 */
-            width: 30%;
-        }
-
-        th:nth-child(6), td:nth-child(6) { /* 상태 */
-            width: 10%;
-        }
-
-        th:nth-child(7), td:nth-child(7) { /* 이미지 */
-            width: 10%;
-        }
-
-        #header {
-            background-color: palegoldenrod;
+        .pagination a:hover {
+            background-color: #007BFF;
             color: white;
-            width: 100%;
-            height: 100px;
         }
 
+        .pagination .active a {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .hover-image {
+            width: auto;
+            height: auto;
+            max-width: 500px;
+            max-height: 500px;
+            display: none;
+        }
+        .checkbox-spacing {
+            margin-left: 20px; /* 체크박스와 다음 항목 사이의 간격 */
+            margin-top: 17px;
+        }
         #nav {
             background-color: lightskyblue;
             color: white;
@@ -100,17 +165,15 @@
             float: left;
         }
 
-        .nav-section {
-            height: 500px; /* 각 부분의 높이를 설정 */
-            padding: 10px;
-        }
-
         #nav-top {
-            background-color: lightblue; /* 상단 부분 색상 */
+            background-color: lightblue;
         }
 
         #nav-bottom {
-            background-color: deepskyblue; /* 하단 부분 색상 */
+            background-color: deepskyblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #section {
@@ -118,6 +181,22 @@
             width: 60%;
             height: 1040px;
             float: left;
+        }
+
+        #image-display {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #header {
+            background-color: palegoldenrod;
+            color: black;
+            font-weight: bold;
+            text-align: right;
+            font-size: 18px;
+            width: 100%;
+            height: 50px;
+            margin-top: 60px; /* header 높이만큼 마진 추가 */
         }
     </style>
 </head>
@@ -127,22 +206,44 @@
         <a class="Title" th:href="@{/pothole/main}">세이프 로드</a>
     </div>
     <nav>
-        <a th:href="@{/pothole/manage}">포트홀 관리</a>
-        <a th:href="@{/pothole/stats}">통계</a>
-        <a th:text="${username} + '님 환영합니다'"></a>
-        <a th:href="@{/user/login}">로그아웃</a>
+        <a class="nav">
+            <span style="color:darkgreen" th:text="${username}"></span>님 환영합니다
+        </a>
+        <a class="nav" th:href="@{/pothole/manage}">포트홀 관리</a>
+        <a class="nav" th:href="@{/pothole/stats}">통계</a>
+        <a class="nav" th:href="@{/user/login}">로그아웃</a>
     </nav>
 </header>
 
-<div id="header"><h2>Header 영역</h2></div>
+<div id="header">
+    <form th:action="@{/pothole/manage}" method="post" style="margin-right: 15px;">
+        <input type="radio" name="select" value="1" class="checkbox-spacing"
+               th:checked="${selectedOption == '1'}">접수 중
+        <input type="radio" name="select" value="2" class="checkbox-spacing"
+               th:checked="${selectedOption == '2'}">접수 실패
+        <input type="radio" name="select" value="3" class="checkbox-spacing"
+               th:checked="${selectedOption == '3'}">접수 완료
+        <input type="radio" name="select" value="4" class="checkbox-spacing"
+               th:checked="${selectedOption == '4'}">수리 중
+        <input type="radio" name="select" value="5" class="checkbox-spacing"
+               th:checked="${selectedOption == '5'}">수리 완료
+        <input type="radio" name="select" value="6" class="checkbox-spacing">초기화
+        <button type="submit" style="margin-left: 10px;">검색</button>
+    </form>
+</div>
+
 <div id="nav">
-    <div class="nav-section" id="nav-top"><h2>상단 Nav 영역</h2></div>
+    <div class="nav-section" id="nav-top">
+        <h2>상단 Nav 영역</h2>
+    </div>
     <div class="nav-section" id="nav-bottom">
-        <h2>하단 Nav 영역</h2>
+        <!-- 하단 Nav 영역에 이미지가 표시될 공간 -->
+        <img id="image-display" src="" alt="클릭된 이미지" style="display:none;">
     </div>
 </div>
+
 <div id="section">
-    <table>
+    <table class="table-border">
         <thead>
         <tr>
             <th>일련번호</th>
@@ -151,11 +252,56 @@
             <th>경도</th>
             <th>주소</th>
             <th>상태</th>
+            <th>유저ID</th>
             <th>이미지</th>
         </tr>
         </thead>
-
         <tbody>
+        <tr th:if="${paging.isEmpty()}">
+            <td colspan="7" style="text-align: center; font-size: 25px; font-weight: bold;">등록된 신고 내역이 없습니다.</td>
+        </tr>
+        <tr style="text-align: center;" th:each="pothole : ${paging.content}">
+            <td th:text="${pothole.id}"></td>
+            <td th:text="${pothole.detectDate}"></td>
+            <td th:text="${pothole.latitude}"></td>
+            <td th:text="${pothole.longitude}"></td>
+            <td th:text="${pothole.address}"></td>
+            <td th:text="${pothole.state}"></td>
+            <td th:text="${pothole.user.userID}"></td>
+            <td>
+                <span style="color:purple; text-decoration: underline;" th:text="${pothole.imagePath}" onclick="showImage(this)"></span>
+                <img th:src="@{/pothole_images/{imagePath}(imagePath=${pothole.imagePath})}" alt="Pothole Image" class="hover-image"/>
+            </td>
+        </tr>
         </tbody>
     </table>
+    <div class="pagination">
+        <ul>
+            <li th:if="${paging.hasPrevious()}">
+                <a th:href="@{/pothole/manage(page=${paging.number - 1}, select=${selectedOption})}">이전</a>
+            </li>
+            <li th:each="i : ${#numbers.sequence(1, paging.totalPages)}"
+                th:class="${paging.number == i - 1} ? 'active' : ''">
+                <a th:href="@{/pothole/manage(page=${i - 1}, select=${selectedOption})}" th:text="${i}"></a>
+            </li>
+            <li th:if="${paging.hasNext()}">
+                <a th:href="@{/pothole/manage(page=${paging.number + 1}, select=${selectedOption})}">다음</a>
+            </li>
+        </ul>
+    </div>
+
 </div>
+
+<script>
+    function showImage(element) {
+        // 이미지 경로를 가져오기
+        var imagePath = element.nextElementSibling.src;
+
+        // 하단 nav 영역의 img 요소에 이미지 경로 설정
+        var imageDisplay = document.getElementById('image-display');
+        imageDisplay.src = imagePath;
+        imageDisplay.style.display = 'block';
+    }
+</script>
+</body>
+</html>

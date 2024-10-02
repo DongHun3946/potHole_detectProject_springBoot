@@ -18,7 +18,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
             position: fixed;
             width: 100%;
             top: 0;
@@ -26,27 +26,33 @@
         }
 
         header img {
-        <!-- 큰 이미지 부분 -->
             height: 40px;
         }
 
         nav {
-            display: flex; /* Flexbox 사용 */
-            align-items: center; /* 세로 정렬 */
+            display: flex;
+            align-items: center;         /* 세로 정렬  */
             justify-content: flex-start; /* 오른쪽 정렬 */
-            width: 40%; /* 너비를 늘려 여유 공간 추가 */
+            width: 40%;
         }
 
         nav a {
             font-weight: bold;
             text-decoration: none;
             color: black;
-            margin-left: 20px; /* 왼쪽 여백을 줄여서 더 많은 공간 확보 */
+            margin-left: 20px;
             font-size: 18px;
             padding-left: 10px;
-            white-space: nowrap; /* 텍스트가 넘치지 않도록 설정 */
+            white-space: nowrap;
         }
-
+        nav span {
+            text-decoration: none;
+            color: black;
+            margin-left: 20px;
+            font-size: 18px;
+            padding-left: 10px;
+            white-space: nowrap;
+        }
         nav a:hover {
             color: #007BFF;
         }
@@ -92,14 +98,12 @@
             font-weight: bold;
             text-decoration: none;
             color: green;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 그림자 효과 추가 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
-        /* 전체 테이블 스타일 */
         .container {
             width: 100%;
             margin: 0 auto;
-
         }
 
         table {
@@ -115,33 +119,105 @@
             background-color: #f2f2f2;
         }
 
-        th:nth-child(1), td:nth-child(1) { /* 일련번호 */
+        td {
+            position: relative;
+        }
+
+        th:nth-child(1) { /* 일련번호 */
             width: 5%;
         }
 
-        th:nth-child(2), td:nth-child(2) { /* 탐지 일자 */
+        th:nth-child(2) { /* 탐지 일자 */
             width: 15%;
             word-wrap: break-word;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        th:nth-child(3), td:nth-child(3),
-        th:nth-child(4), td:nth-child(4) { /* 위도, 경도 */
+        th:nth-child(3), td:nth-child(4) { /* 위도, 경도 */
             width: 15%;
         }
 
-        th:nth-child(5), td:nth-child(5) { /* 주소 */
+        th:nth-child(5){ /* 주소 */
             width: 30%;
         }
 
-        th:nth-child(6), td:nth-child(6) { /* 상태 */
+        th:nth-child(6) { /* 상태 */
             width: 10%;
         }
 
-        th:nth-child(7), td:nth-child(7) { /* 이미지 */
+        th:nth-child(7) { /* 이미지 */
             width: 10%;
         }
+        .table-border {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .table-border th,
+        .table-border td {
+            border: 1px solid black;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center; /* 중앙 정렬 */
+            margin-top: 20px;
+        }
+
+        .pagination ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .pagination li {
+            display: inline;
+        }
+        .pagination a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        .pagination a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .pagination .active a {
+            background-color: #007BFF;
+            color: white;
+        }
+        .tbody{
+            height: 500px;
+        }
+        .report {
+            border: 2px solid #007BFF; /* 테두리 설정 */
+            padding: 20px;             /* 내부 여백 */
+            border-radius: 10px;       /* 모서리 둥글게 */
+            background-color: #f9f9f9; /* 배경색 설정 */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+            margin-top: 20px;          /* 위쪽 여백 */
+            width: 80%;                /* 가로 크기 조정 */
+            margin-left: 0;
+            font-size: 20px;
+        }
+        .report div {
+            margin-bottom: 10px; /* 각 행 사이의 간격 */
+        }
+        .hover-image {
+            width: auto; /* 너비를 자동으로 설정하여 원본 크기 유지 */
+            height: auto; /* 높이도 자동으로 설정하여 원본 비율 유지 */
+            max-width: 500px; /* 최대 너비를 100%로 설정하여 부모 요소를 넘지 않도록 */
+            max-height: 500px; /* 최대 높이도 100%로 설정하여 부모 요소를 넘지 않도록 */
+            position: static; /* 절대 위치 */
+            z-index: 1; /* 이미지가 이름 위에 나타나도록 설정 */
+            display: none; /* 기본적으로 숨김 */
+        }
+
     </style>
 </head>
 <body>
@@ -151,9 +227,11 @@
         <a class="Title" th:href="@{/pothole/main}">세이프 로드</a>
     </div>
     <nav>
+        <a>
+            <span style="color:darkgreen" th:text="${username}"></span>님 환영합니다
+        </a>
         <a th:href="@{/pothole/manage}">포트홀 관리</a>
         <a th:href="@{/pothole/stats}">통계</a>
-        <a th:text="${username} + '님 환영합니다'"></a>
         <a th:href="@{/user/account}">개인정보수정</a>
         <a th:href="@{/user/login}">로그아웃</a>
     </nav>
@@ -163,19 +241,19 @@
 <section class="hero">
     <div>
         <h1>Pothole</h1>
-        <p>we can manage outselves</p>
+        <p>we can manage ourselves</p>
     </div>
 </section>
 
 <!-- Content Section -->
+<!-- Content Section -->
 <section class="content">
     <!-- Container with Table -->
     <div class="container">
-        <table>
-            <div class="user-info">
-                <h2 th:text="${username} + '님의 신고내역'"></h2>
-            </div>
-
+        <div class="user-info">
+            <h2 th:text="${username} + '님의 신고내역'"></h2>
+        </div>
+        <table class="table-border">
             <thead>
             <tr>
                 <th>일련번호</th>
@@ -187,24 +265,67 @@
                 <th>이미지</th>
             </tr>
             </thead>
-
-            <tbody>
+            <tbody class="tbody">
+            <tr th:if="${paging.isEmpty()}">
+                <td colspan="7" style="text-align: center; font-size: 25px; font-weight: bold;">등록된 신고 내역이 없습니다.</td>
+            </tr>
+            <tr style="text-align: center;" th:each="pothole : ${paging.content}">
+                <td th:text="${pothole.id}"></td>
+                <td th:text="${pothole.detectDate}"></td>
+                <td th:text="${pothole.latitude}"></td>
+                <td th:text="${pothole.longitude}"></td>
+                <td th:text="${pothole.address}"></td>
+                <td th:text="${pothole.state}"></td>
+                <td>
+                    <span style="color:purple; text-decoration: underline;" th:text="${pothole.imagePath}" onclick="showImage(this)"></span>
+                    <img th:src="@{/pothole_images/{imagePath}(imagePath=${pothole.imagePath})}" alt="Pothole Image" class="hover-image"/>
+                </td>
+            </tr>
             </tbody>
         </table>
+
+        <!-- Pagination (Central Alignment) -->
+        <div class="pagination">
+            <ul>
+                <li th:if="${paging.hasPrevious()}">
+                    <a th:href="@{/pothole/main(page=${paging.number - 1})}">이전</a>
+                </li>
+                <li th:each="i : ${#numbers.sequence(1, paging.totalPages)}"
+                    th:class="${paging.number == i - 1} ? 'active' : ''">
+                    <a th:href="@{/pothole/main(page=${i - 1})}" th:text="${i}"></a>
+                </li>
+                <li th:if="${paging.hasNext()}">
+                    <a th:href="@{/pothole/main(page=${paging.number + 1})}">다음</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </section>
+
 <section class="content">
     <div class="container">
         <div class="user-info">
             <h2 th:text="${username} + '님의 신고현황'"></h2>
         </div>
-
-        <div>접수 중 : 건</div>
-        <div>접수 실패 : 건</div>
-        <div>접수 성공 : 건</div>
-        <div>수리 중 : 건</div>
-        <div>수리 완료 : 건</div>
+        <div class="report">
+            <div>접수 중 : <a style="color: tomato" th:text="${cnt[0]}"></a> 건</div>
+            <div>접수 실패 : <a style="color: tomato" th:text="${cnt[1]}"></a> 건</div>
+            <div>접수 완료 : <a style="color: tomato" th:text="${cnt[2]}"></a> 건</div>
+            <div>수리 중 : <a style="color: tomato" th:text="${cnt[3]}"></a> 건</div>
+            <div>수리 완료 : <a style="color: tomato" th:text="${cnt[4]}"></a> 건</div>
+        </div>
     </div>
 </section>
 </body>
 </html>
+<script>
+    function showImage(element) {
+        // 해당 <td> 내에서 이미지 요소를 찾아 표시
+        var image = element.nextElementSibling;
+        if (image.style.display === "none" || image.style.display === "") {
+            image.style.display = "block";
+        } else {
+            image.style.display = "none"; // 다시 클릭하면 이미지 숨기기
+        }
+    }
+</script>
