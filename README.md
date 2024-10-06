@@ -50,7 +50,13 @@
 - **수정 시 콤보박스를 이용할 경우 배열을 통해 값을 컨트롤러에 넘겨줄 수 있고 컨트롤러에서는 Map<key, value> 데이터 구조를 이용해서 해결할 수 있음** <br/>
 ex) View : th:name="'stateMap[' + ${pothole.id} + ']'" <br/>
     Controller : @RequestParam Map<String, String> stateMap
-![image](https://github.com/user-attachments/assets/18d2c432-e6ee-406a-a499-64b26884b4f5)
+![image](https://github.com/user-attachments/assets/81e99863-7e61-4ecc-918f-7af6579c885d)
+![image](https://github.com/user-attachments/assets/a50c1904-5f8f-4417-90b5-6a4248980c15)
+![image](https://github.com/user-attachments/assets/9a24c993-bdc2-4f0a-af9b-507fee27152b)
+
+
+
+
 
 
 ## ✒️ API
