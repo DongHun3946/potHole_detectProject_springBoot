@@ -1,15 +1,15 @@
 package com.mysite.pothole_capstone.pothole;
 
 import com.mysite.pothole_capstone.user.User;
-import com.mysite.pothole_capstone.pothole.PotImage;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.util.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pothole {
@@ -27,10 +27,10 @@ public class Pothole {
     @Column(columnDefinition = "TEXT")
     private String state;  //상태
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime detectDate; //탐지일자
 
-    @OneToMany(mappedBy = "pothole", cascade = CascadeType.ALL)
-    private List<PotImage> image;
+    private String imagePath;
 
     @ManyToOne
     private User user; //회원

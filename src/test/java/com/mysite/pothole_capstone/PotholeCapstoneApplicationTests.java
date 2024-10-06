@@ -7,6 +7,9 @@ import com.mysite.pothole_capstone.pothole.Pothole;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.swing.text.html.Option;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.*;
@@ -20,16 +23,9 @@ class PotholeCapstoneApplicationTests {
 
     @Test
     void contextLoads() {
-        Pothole p = Pothole.builder()
-                .latitude()
-                .longitude()
-                .address()
-                .state()
-                .detectDate()
-                .image()
-                .user()
-                .build();
-        this.potholeRepository.save(p);
+        Optional<Pothole> oa = this.potholeRepository.findById(24);
+        Pothole pothole = oa.get();
+        this.potholeRepository.delete(pothole);
     }
 }
 /*

@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>세이프로드 : 포트홀 관리</title>
+    <!-- Leaflet CSS 및 JS -->
+    <link href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" rel="stylesheet"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Leaflet AwesomeMarkers 로컬 CSS 및 JS -->
+    <link href="/leaflet.awesome-markers.css" rel="stylesheet"/>
+    <script src="/leaflet.awesome-markers.js"></script>
+
+    <link href="/font-awesome.min.css" rel="stylesheet">
     <style>
-        .Title {
-            font-size: 20px;
-            font-weight: bold;
-            text-decoration: none;
-            color: black;
+        body {
+            padding-top: 10px; /* header의 높이만큼 패딩 추가 */
         }
 
         header {
@@ -22,17 +27,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 100;
-        }
-
-        nav a {
-            font-weight: bold;
-            text-decoration: none;
-            text-align: right;
-            color: black;
-            margin-left: 20px;
-            font-size: 18px;
-            padding-left: 10px;
+            z-index: 1;
         }
 
         nav {
@@ -42,15 +37,18 @@
         nav a:hover {
             color: #007BFF;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
+
         th, td {
-            border: 1px solid black; /* 테이블 외곽선 */
+            border: 1px solid black;
             padding: 8px;
             text-align: center;
         }
+
         th {
             padding: 2px 10px 2px 10px;
             text-align: center;
@@ -58,39 +56,158 @@
             background-color: #f2f2f2;
         }
 
-        th:nth-child(1), td:nth-child(1) { /* 일련번호 */
+        th:nth-child(1) {
+            width: 3%;
+        }
+
+        th:nth-child(2) {
             width: 5%;
         }
 
-        th:nth-child(2), td:nth-child(2) { /* 탐지 일자 */
+        th:nth-child(3) {
             width: 15%;
             word-wrap: break-word;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        th:nth-child(3), td:nth-child(3),
-        th:nth-child(4), td:nth-child(4) { /* 위도, 경도 */
-            width: 15%;
+        th:nth-child(4),
+        th:nth-child(5) {
+            width: 13%;
         }
 
-        th:nth-child(5), td:nth-child(5) { /* 주소 */
+        th:nth-child(6) {
             width: 30%;
         }
 
-        th:nth-child(6), td:nth-child(6) { /* 상태 */
+        th:nth-child(7) {
             width: 10%;
         }
 
-        th:nth-child(7), td:nth-child(7) { /* 이미지 */
-            width: 10%;
+        th:nth-child(8) {
+            width: 5%;
         }
 
-        #header {
-            background-color: palegoldenrod;
+        th:nth-child(9) {
+            width: 5%;
+        }
+
+        .Title {
+            font-size: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav {
+            font-weight: bold;
+            text-decoration: none;
+            text-align: right;
+            color: black;
+            margin-left: 20px;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+
+        .nav-section {
+            height: 445px;
+            padding: 5px;
+            border: 1px solid grey;
+        }
+
+        .table-border {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        .table-border th,
+        .table-border td {
+            border: 1px solid black;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .pagination li {
+            display: inline;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #007BFF;
             color: white;
-            width: 100%;
-            height: 100px;
+        }
+
+        .pagination .active a {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .hover-image {
+            width: auto;
+            height: auto;
+            max-width: 500px;
+            max-height: 500px;
+            display: none;
+        }
+
+        .checkbox-spacing {
+            margin-left: 20px; /* 체크박스와 다음 항목 사이의 간격 */
+            margin-top: 17px;
+        }
+
+        .marker-icon {
+            width: 23px;
+            height: 25px;
+            background-image: url('/marker_image/markers-soft.png');
+            background-size: cover;
+            display: inline-block;
+        }
+
+        .red-marker {
+            background-position: 3px 0; /* 빨간 마커 위치 */
+        }
+
+        .grey-marker {
+            background-position: -342.3px 0; /* 회색 마커 위치 */
+        }
+
+        .blue-marker {
+            background-position: -58px 0; /* 파란 마커 위치 */
+        }
+
+        .yellow-marker {
+            background-position: -19px 0; /* 오렌지색 마커 위치 */
+        }
+
+        .green-marker {
+            background-position: -37px 0; /* 초록 마커 위치 */
+        }
+
+        .awesome-marker {
+            background-image: url("/marker_image/markers-soft.png"); /* 경로를 /images/로 수정 */
+        }
+
+        .awesome-marker-shadow {
+            background-image: url("/marker_image/markers-shadow.png"); /* 경로를 /images/로 수정 */
         }
 
         #nav {
@@ -100,17 +217,15 @@
             float: left;
         }
 
-        .nav-section {
-            height: 500px; /* 각 부분의 높이를 설정 */
-            padding: 10px;
-        }
-
         #nav-top {
-            background-color: lightblue; /* 상단 부분 색상 */
+            background-color: lightblue;
         }
 
         #nav-bottom {
-            background-color: deepskyblue; /* 하단 부분 색상 */
+            background-color: deepskyblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #section {
@@ -119,6 +234,30 @@
             height: 1040px;
             float: left;
         }
+
+        #image-display {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #header {
+            background-color: palegoldenrod;
+            color: black;
+            font-weight: bold;
+            text-align: right;
+            font-size: 18px;
+            width: 100%;
+            height: 50px;
+            margin-top: 60px; /* header 높이만큼 마진 추가 */
+        }
+
+        #map {
+            height: 445px;
+            width: 100%;
+            position: static;
+            z-index: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -127,35 +266,303 @@
         <a class="Title" th:href="@{/pothole/main}">세이프 로드</a>
     </div>
     <nav>
-        <a th:href="@{/pothole/manage}">포트홀 관리</a>
-        <a th:href="@{/pothole/stats}">통계</a>
-        <a th:text="${username} + '님 환영합니다'"></a>
-        <a th:href="@{/user/login}">로그아웃</a>
+        <a class="nav">
+            <span style="color:darkgreen" th:text="${username}"></span>님 환영합니다
+        </a>
+        <a class="nav" th:href="@{/pothole/manage}">포트홀 관리</a>
+        <a class="nav" th:href="@{/pothole/stats}">통계</a>
+        <a class="nav" th:href="@{/user/login}">로그아웃</a>
     </nav>
 </header>
 
-<div id="header"><h2>Header 영역</h2></div>
+<div id="header">
+    <form method="post" style="margin-right: 15px;" th:action="@{/pothole/manage}">
+        <input class="checkbox-spacing" th:checked="${selectedOption == '1'}" name="select" type="radio"
+               value="1">접수 중 <!--selectedOption이 1일 경우 이 버튼이 클릭됨-->
+        <input class="checkbox-spacing" th:checked="${selectedOption == '2'}" name="select" type="radio"
+               value="2">접수 실패
+        <input class="checkbox-spacing" th:checked="${selectedOption == '3'}" name="select" type="radio"
+               value="3">접수 완료
+        <input class="checkbox-spacing" th:checked="${selectedOption == '4'}" name="select" type="radio"
+               value="4">수리 중
+        <input class="checkbox-spacing" th:checked="${selectedOption == '5'}" name="select" type="radio"
+               value="5">수리 완료
+        <input class="checkbox-spacing" th:name="select" type="radio" value="6">초기화
+        <button style="margin-left: 10px;" type="submit">검색</button>
+    </form>
+</div>
+
 <div id="nav">
-    <div class="nav-section" id="nav-top"><h2>상단 Nav 영역</h2></div>
+    <div class="nav-section" id="nav-top">
+        <div id="map"></div>
+    </div>
     <div class="nav-section" id="nav-bottom">
-        <h2>하단 Nav 영역</h2>
+        <img alt="포트홀 이미지" id="image-display" src="" style="display:none;">
     </div>
 </div>
-<div id="section">
-    <table>
-        <thead>
-        <tr>
-            <th>일련번호</th>
-            <th>탐지 일자</th>
-            <th>위도</th>
-            <th>경도</th>
-            <th>주소</th>
-            <th>상태</th>
-            <th>이미지</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        </tbody>
-    </table>
+<div id="section">
+    <form method="post" th:action="@{/pothole/manage}">
+        <table class="table-border">
+            <thead>
+            <tr>
+                <th>선택</th> <!-- 라디오 버튼을 위한 열 추가 -->
+                <th>일련번호</th>
+                <th>탐지 일자</th>
+                <th>위도</th>
+                <th>경도</th>
+                <th>주소</th>
+                <th>상태</th>
+                <th>유저ID</th>
+                <th>이미지</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${paging.isEmpty()}">
+                <td colspan="7" style="text-align: center; font-size: 25px; font-weight: bold;">등록된 신고 내역이 없습니다.</td>
+            </tr>
+            <tr style="text-align: center;" th:each="pothole : ${paging.content}">
+                <td>
+                    <input class="row-selector" name="selectedRow" onclick="selectRow(this)" type="radio" th:value="${pothole.id}">
+                </td>
+                <td th:text="${pothole.id}"></td>
+                <td th:text="${pothole.detectDate}"></td>
+                <td th:text="${pothole.latitude}"></td>
+                <td th:text="${pothole.longitude}"></td>
+                <td th:text="${pothole.address}"></td>
+                <td>
+                    <span th:id="'state-' + ${pothole.id}" th:text="${pothole.state}" class="state-text"></span>
+                    <select style="display: none" th:name="'stateMap[' + ${pothole.id} + ']'" th:id="'state-select-' + ${pothole.id}">
+                        <option value="접수 중" th:selected="${pothole.state == '접수 중'}">접수 중</option>
+                        <option value="접수 실패" th:selected="${pothole.state == '접수 실패'}">접수 실패</option>
+                        <option value="접수 완료" th:selected="${pothole.state == '접수 완료'}">접수 완료</option>
+                        <option value="수리 중" th:selected="${pothole.state == '수리 중'}">수리 중</option>
+                        <option value="수리 완료" th:selected="${pothole.state == '수리 완료'}">수리 완료</option>
+                    </select>
+                </td>
+                <td th:text="${pothole.user.userID}"></td>
+                <td>
+                <span onclick="showImage(this)" style="color:purple; text-decoration: underline;
+                overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+                display: inline-block; max-width: 130px;" th:text="${pothole.imagePath}"></span>
+                    <img alt="Pothole Image" class="hover-image"
+                         th:src="@{/pothole_images/{imagePath}(imagePath=${pothole.imagePath})}"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <!-- 기존 페이지네이션 (페이지 번호는 가운데 정렬) -->
+            <div style="flex: 1; display: flex; justify-content: center; margin-left: 185px;">
+                <div class="pagination">
+                    <ul style="display: flex; list-style: none; padding: 0; gap: 10px;">
+                        <li th:if="${paging.hasPrevious()}">
+                            <a th:href="@{/pothole/manage(page=${paging.number - 1}, select=${selectedOption})}">이전</a>
+                        </li>
+                        <li th:class="${paging.number == i - 1} ? 'active' : ''"
+                            th:each="i : ${#numbers.sequence(1, paging.totalPages)}">
+                            <a th:href="@{/pothole/manage(page=${i - 1}, select=${selectedOption})}" th:text="${i}"></a>
+                        </li>
+                        <li th:if="${paging.hasNext()}">
+                            <a th:href="@{/pothole/manage(page=${paging.number + 1}, select=${selectedOption})}">다음</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 10px;">
+                    <button class="edit-btn"
+                            onclick="editSelectedRow()"
+                            style="padding: 8px 16px; background-color: #007BFF; color: white; border: none; border-radius: 5px;" type="button">수정
+                    </button>
+                    <button style="padding: 8px 16px; background-color: #DC3545; color: white; border: none; border-radius: 5px;"
+                            type="submit">삭제
+                    </button>
+                    <button style="padding: 8px 16px; background-color: #28A745; color: white; border: none; border-radius: 5px;"
+                            type="submit">저장
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
+<script>
+    // 마지막으로 선택된 라디오 버튼을 추적하는 변수
+    let lastSelectedRadio = null;
+
+    // 라디오 버튼으로 행 선택 시 해당 행을 강조 표시
+    function selectRow(radio) {
+        // 체크 해제 기능 추가
+        if (radio === lastSelectedRadio) {
+            radio.checked = false;
+            lastSelectedRadio = null; // 선택 해제 후, 마지막 선택된 라디오를 초기화
+            radio.closest('tr').classList.remove('selected'); // 선택된 행의 강조 해제
+        } else {
+            // 모든 행의 'selected' 클래스 제거
+            document.querySelectorAll('table tr').forEach(row => row.classList.remove('selected'));
+
+            // 새로운 라디오 버튼을 선택하고, 해당 행을 강조
+            lastSelectedRadio = radio;
+            const selectedRow = radio.closest('tr');
+            selectedRow.classList.add('selected');
+        }
+    }
+
+    function editSelectedRow() {
+        // 선택된 라디오 버튼의 행을 찾아 해당 pothole id로 상태를 수정
+        const selectedRadio = document.querySelector('input[name="selectedRow"]:checked');
+        if (selectedRadio) {
+            const selectedRow = selectedRadio.closest('tr');
+            const potholeId = selectedRow.querySelector('td:nth-child(2)').textContent; // 일련번호(ID)가 있는 열에서 id 추출
+            toggleState(potholeId);
+        } else {
+            alert('수정할 항목을 선택하세요.');
+        }
+    }
+
+    // 상태 변경 함수
+    function toggleState(potholeId) {
+        const stateText = document.getElementById('state-' + potholeId);
+        const stateSelect = document.getElementById('state-select-' + potholeId);
+
+        if (stateText.style.display !== 'none') {
+            stateText.style.display = 'none';
+            stateSelect.style.display = 'inline-block';
+        } else {
+            stateText.style.display = 'inline-block';
+            stateSelect.style.display = 'none';
+        }
+    }
+</script>
+<style>
+    /* 선택된 행을 시각적으로 강조 */
+    tr.selected {
+        background-color: cornflowerblue;
+    }
+</style>
+<script>
+    function showImage(element) {
+        // 이미지 경로를 가져오기
+        var imagePath = element.nextElementSibling.src;
+
+        // 하단 nav 영역의 img 요소에 이미지 경로 설정
+        var imageDisplay = document.getElementById('image-display');
+        imageDisplay.src = imagePath;
+        imageDisplay.style.display = 'block';
+    }
+</script>
+<script th:inline="javascript">
+    // 서버에서 전달된 potholes 데이터를 JavaScript 배열로 변환
+    var potholes = /*[[${potholes}]]*/ [];
+
+    window.onload = function () {
+        // 지도 생성
+        var map = L.map('map').setView([37.5665, 126.9780], 13);
+
+        // 오픈스트리트맵 타일 이미지를 가져옴, 줌 레벨 : 19, 저작권 표시
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        // 오른쪽 상단에 설명 추가
+        // 설명 추가
+        var descriptionControl = L.control({position: 'topright'});
+
+        descriptionControl.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info');
+            div.innerHTML = `
+            <h5>상태별 마커 설명</h5>
+            <div>
+                <span class="marker-icon red-marker"></span>
+                <span>접수 중</span>
+            </div>
+            <div>
+                <span class="marker-icon grey-marker"></span>
+                <span>접수 실패</span>
+            </div>
+            <div>
+                <span class="marker-icon blue-marker"></span>
+                <span>접수 완료</span>
+            </div>
+            <div>
+                <span class="marker-icon yellow-marker"></span>
+                <span>수리 중</span>
+            </div>
+            <div>
+                <span class="marker-icon green-marker"></span>
+                <span>수리 완료</span>
+            </div>
+        `;
+            div.style.backgroundColor = 'white';
+            div.style.padding = '10px';
+            div.style.color = 'black';
+            div.style.borderRadius = '5px';
+            div.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.5)';
+            return div;
+        };
+        descriptionControl.addTo(map);
+        // 마커 아이콘 설정
+        var redMarker = L.AwesomeMarkers.icon({
+            icon: 'info-circle',
+            prefix: 'fa',
+            markerColor: 'red'
+        });
+        var blueMarker = L.AwesomeMarkers.icon({
+            icon: 'info-circle',
+            prefix: 'fa',
+            markerColor: 'blue'
+        });
+        var greenMarker = L.AwesomeMarkers.icon({
+            icon: 'info-circle',
+            prefix: 'fa',
+            markerColor: 'green'
+        });
+        var yellowMarker = L.AwesomeMarkers.icon({
+            icon: 'info-circle',
+            prefix: 'fa',
+            markerColor: 'orange'
+        });
+        var greyMarker = L.AwesomeMarkers.icon({
+            icon: 'info-circle',
+            prefix: 'fa',
+            markerColor: 'gray'
+        });
+
+        // 각 포트홀 위치에 마커 추가
+        potholes.forEach(function (pothole) {
+            var lat = pothole.latitude;  // 포트홀의 위도
+            var lng = pothole.longitude; // 포트홀의 경도
+            var imagePath = pothole.imagePath; // 이미지 경로
+
+            var markerIcon;
+            if (pothole.state === "접수 중") {
+                markerIcon = redMarker;
+            } else if (pothole.state === "접수 실패") {
+                markerIcon = greyMarker;
+            } else if (pothole.state === "접수 완료") {
+                markerIcon = blueMarker;
+            } else if (pothole.state === "수리 중") {
+                markerIcon = yellowMarker;
+            } else if (pothole.state === "수리 완료") {
+                markerIcon = greenMarker;
+            }
+
+            // 마커 생성
+            var marker = L.marker([lat, lng], {icon: markerIcon}).addTo(map);
+
+            // 마커 클릭 시 해당 이미지 표시
+            marker.bindPopup("<b>일련번호 : " + pothole.id + "</b><br>상태 : " + pothole.state + "<br><img src='/pothole_images/" + imagePath + "' alt='포트홀 이미지' style='width: 200px; height: auto;'>");
+
+            // 마커 클릭 시 하단에 이미지 표시
+            marker.on('click', function () {
+                var imageDisplay = document.getElementById('image-display');
+                imageDisplay.src = "/pothole_images/" + imagePath;
+                imageDisplay.style.display = 'block';
+            });
+        });
+    };
+</script>
+</body>
+</html>
