@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.security.Principal;
 
@@ -63,6 +64,12 @@ public class UserController {
     @GetMapping("/login")
     public String login(){
         return "login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(SessionStatus status){
+        status.setComplete();
+        return "redirect:/user/login";
     }
 
     @GetMapping("/findID")

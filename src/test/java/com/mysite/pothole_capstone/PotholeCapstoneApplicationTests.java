@@ -23,6 +23,9 @@ class PotholeCapstoneApplicationTests {
 
     @Test
     void contextLoads() {
+        Optional<Pothole> oa = this.potholeRepository.findById(24);
+        Pothole pothole = oa.get();
+        this.potholeRepository.delete(pothole);
     }
 }
 /*

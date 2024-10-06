@@ -1,15 +1,14 @@
 package com.mysite.pothole_capstone.pothole;
 
-import com.mysite.pothole_capstone.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.mysite.pothole_capstone.user.User;
-
-import java.time.LocalDateTime;
+import com.mysite.pothole_capstone.pothole.Pothole;
 import java.util.*;
+import java.lang.*;
 @RequiredArgsConstructor
 @Service
 public class PotholeService {
@@ -19,7 +18,7 @@ public class PotholeService {
         return this.potholeRepository.findByUser(user, pageable);
     }
     public Page<Pothole> getListAll(int page){
-        Pageable pageable = PageRequest.of(page, 11);
+        Pageable pageable = PageRequest.of(page, 15);
         return this.potholeRepository.findAll(pageable);
     }
     public List<Integer> getCount(User user, String keyword){
@@ -32,7 +31,7 @@ public class PotholeService {
         return oa;
     }
     public Page<Pothole> getSelectList(String state, int page){
-        Pageable pageable = PageRequest.of(page, 11);
+        Pageable pageable = PageRequest.of(page, 15);
         Page<Pothole> oa = null;
         switch (state) {
             case "1":
@@ -57,5 +56,19 @@ public class PotholeService {
                 break;
         }
         return oa;
+    }
+    public List<Pothole> getLocation(){
+        List<Pothole> oa = this.potholeRepository.findAll();
+        return oa;
+    }
+    public void modifyState(String state, Integer id){
+        Optional<Pothole> oa = this.potholeRepository.findById(id);
+        if(oa.isPresent()){
+            Pothole pothole = oa.get();
+            pothole = pothole.toBuilder()
+                    .state(state)
+                    .build();
+            this.potholeRepository.save(pothole);
+        }
     }
 }
