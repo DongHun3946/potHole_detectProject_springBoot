@@ -51,7 +51,7 @@
 ex) View : th:name="'stateMap[' + ${pothole.id} + ']'" <br/>
     Controller : @RequestParam Map<String, String> stateMap
 ![image](https://github.com/user-attachments/assets/81e99863-7e61-4ecc-918f-7af6579c885d)
-![image](https://github.com/user-attachments/assets/a50c1904-5f8f-4417-90b5-6a4248980c15)
+![image](https://github.com/user-attachments/assets/a50c1904-5f8f-4417-90b5-6a4248980c15)<br/>
 ![image](https://github.com/user-attachments/assets/9a24c993-bdc2-4f0a-af9b-507fee27152b)
 
 
