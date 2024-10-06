@@ -67,14 +67,23 @@ public class PotholeController {
 
         return "manage";
     }
-
+    @PostMapping("/manage/save")
+    public String manageSave(@RequestParam(value = "selectedRow", required = false) Integer id,
+                             @RequestParam Map<String, String> stateMap,
+                             RedirectAttributes redirectAttributes) {
+        String state = stateMap.get("stateMap[" + id + "]");
+        try {
+            this.potholeService.modifyState(state, id);
+            redirectAttributes.addFlashAttribute("successMessage", "포트홀 상태가 성공적으로 업데이트 되었습니다.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "포트홀 상태 업데이트 중 오류가 발생했습니다.");
+        }
+        return "redirect:/pothole/manage";
+    }
     @PostMapping("/manage")
     public String manage2(Model model, Principal principal,
                           @RequestParam(value = "select", defaultValue = "null") String select,
-                          @RequestParam(value = "page", defaultValue = "0") int page,
-                          @RequestParam("selectedRow") Integer id,
-                          @RequestParam Map<String, String> stateMap,
-                          RedirectAttributes redirectAttributes) {
+                          @RequestParam(value = "page", defaultValue = "0") int page) {
         String userId = principal.getName();
         User user = userService.findUser(userId);
         String username = user.getUsername();
@@ -86,16 +95,8 @@ public class PotholeController {
 
         List<Pothole> potholes = this.potholeService.getLocation();
         model.addAttribute("potholes", potholes);
-        String state = stateMap.get("stateMap[" + id + "]");
 
-        try{
-            this.potholeService.modifyState(state, id);
-            redirectAttributes.addFlashAttribute("successMessage", "포트홀 상태가 성공적으로 업데이트 되었음.");
-        }
-        catch(Exception e){
-            redirectAttributes.addFlashAttribute("errorMessage", "포트홀 상태 업데이트 중 오류가 발생함.");
-        }
-        return "redirect:/pothole/manage";
+        return "manage";
     }
 
     @GetMapping("/access-denied") //관리자만 허용하기 위함

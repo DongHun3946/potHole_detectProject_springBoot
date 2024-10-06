@@ -302,7 +302,7 @@
 </div>
 
 <div id="section">
-    <form method="post" th:action="@{/pothole/manage}">
+    <form method="post" th:action="@{/pothole/manage/save}">
         <table class="table-border">
             <thead>
             <tr>
@@ -376,9 +376,6 @@
                     <button class="edit-btn"
                             onclick="editSelectedRow()"
                             style="padding: 8px 16px; background-color: #007BFF; color: white; border: none; border-radius: 5px;" type="button">수정
-                    </button>
-                    <button style="padding: 8px 16px; background-color: #DC3545; color: white; border: none; border-radius: 5px;"
-                            type="submit">삭제
                     </button>
                     <button style="padding: 8px 16px; background-color: #28A745; color: white; border: none; border-radius: 5px;"
                             type="submit">저장
