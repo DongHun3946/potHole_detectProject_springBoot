@@ -71,4 +71,11 @@ public class PotholeService {
             this.potholeRepository.save(pothole);
         }
     }
+    public void deletePothole(Integer id){
+        Optional<Pothole> oa = this.potholeRepository.findById(id);
+        if(oa.isPresent()){
+            Pothole pothole = oa.get();
+            this.potholeRepository.delete(pothole);
+        }
+    }
 }
