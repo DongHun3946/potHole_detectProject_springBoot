@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/49889001-d8fd-4c60-87ed-d1c35eccca59
 # 캡스톤디자인_포트홀 탐지 및 자동신고 시스템
 
 ## 👨‍🏫 프로젝트 소개
@@ -35,13 +37,13 @@
 
 ## 📝 구현(화면 구성)
 - 로그인 화면
-https://github.com/user-attachments/assets/43876eef-ec92-450a-8033-79b1832a5af6
+https://github.com/user-attachments/assets/bcd5fc11-243a-4345-af17-b822491cc478
 
 - 회원가입 화면
-https://github.com/user-attachments/assets/3e681ed0-0122-4738-9823-36a9171e4d13
- 
-아이디찾기 화면
-- https://github.com/user-attachments/assets/9ec2cb4b-0dcf-4d2a-b517-e4beadf21e0a
+https://github.com/user-attachments/assets/b4bb26c4-dcf7-4ae9-9fc3-52379b929d98
+
+
+
 
 
 - 비밀번호 찾기 화면
