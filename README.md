@@ -35,8 +35,7 @@
 
 ## 📝 구현(화면 구성)
 로그인 화면
-
-- https://github.com/user-attachments/assets/f67b2dfa-b0c8-434f-b895-815eef335895
+https://github.com/user-attachments/assets/f67b2dfa-b0c8-434f-b895-815eef335895
   
 회원가입 화면
 
