@@ -34,13 +34,13 @@
   ![image](https://github.com/user-attachments/assets/a9700d45-37d8-4ee2-b8ce-dc1bde25b06a)
 
 ## 📝 구현(화면 구성)
-**로그인 화면**
+로그인 화면
 - https://github.com/user-attachments/assets/f67b2dfa-b0c8-434f-b895-815eef335895
   
-**회원가입 화면**
+회원가입 화면
 - https://github.com/user-attachments/assets/99c6efb7-0d0e-4d1e-9539-026647b7f46a
   
-**아이디찾기 화면**
+아이디찾기 화면
 - https://github.com/user-attachments/assets/9ec2cb4b-0dcf-4d2a-b517-e4beadf21e0a
 
 
