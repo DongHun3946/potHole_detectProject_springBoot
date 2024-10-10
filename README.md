@@ -39,7 +39,7 @@
 **회원가입 화면**
 - https://github.com/user-attachments/assets/99c6efb7-0d0e-4d1e-9539-026647b7f46a
 **아이디찾기 화면**
-https://github.com/user-attachments/assets/9ec2cb4b-0dcf-4d2a-b517-e4beadf21e0a
+- https://github.com/user-attachments/assets/9ec2cb4b-0dcf-4d2a-b517-e4beadf21e0a
 
 
 - 비밀번호 찾기 화면
