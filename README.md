@@ -44,10 +44,18 @@
 - https://github.com/user-attachments/assets/5a588aff-ee7f-47e4-90dc-c3e0df1954bb
 
 - 비밀번호 찾기 화면
-- https://github.com/user-attachments/assets/9109ac57-6641-4e73-9a13-6f2b0c800dd9
-
-- 메인화면
 - 
+
+- 메인화면(유저)
+- 
+
+- 메인화면(관리자)
+- 
+
+- 포트홀 관리 화면(관리자)
+-
+
+- 개인정보 수정 화면
 
 
 
