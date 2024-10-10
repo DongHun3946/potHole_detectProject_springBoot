@@ -26,7 +26,6 @@ public class SecurityConfig{
                 .authorizeHttpRequests((authorizeHttpRequests) ->
                         authorizeHttpRequests
                                 .requestMatchers("/pothole/manage").hasRole("MANAGER")
-                                .requestMatchers("/pothole/stats").hasRole("MANAGER")
                                 .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/user/login")    //로그인 페이지 경로 : /user/login

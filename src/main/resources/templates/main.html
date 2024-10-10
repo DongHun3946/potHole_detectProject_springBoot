@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>세이프 로드</title>
+    <!-- Google Fonts 추가 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif; /* 새로운 폰트 */
         }
 
         /* Header */
@@ -18,7 +20,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2); /* 그림자 살짝 줄임 */
             position: fixed;
             width: 100%;
             top: 0;
@@ -31,12 +33,12 @@
 
         nav {
             display: flex;
-            align-items: center;         /* 세로 정렬  */
-            justify-content: flex-start; /* 오른쪽 정렬 */
+            align-items: center;
+            justify-content: flex-start;
             width: 40%;
         }
 
-        nav a {
+        nav a, nav span {
             font-weight: bold;
             text-decoration: none;
             color: black;
@@ -44,17 +46,11 @@
             font-size: 18px;
             padding-left: 10px;
             white-space: nowrap;
+            transition: color 0.3s ease; /* 부드러운 색상 전환 */
         }
-        nav span {
-            text-decoration: none;
-            color: black;
-            margin-left: 20px;
-            font-size: 18px;
-            padding-left: 10px;
-            white-space: nowrap;
-        }
+
         nav a:hover {
-            color: #007BFF;
+            color: #FF6347; /* 좀 더 부드러운 색상으로 변경 */
         }
 
         .hero {
@@ -70,16 +66,19 @@
         }
 
         .hero h1 {
-            font-size: 80px;
+            font-size: 70px; /* 사이즈 살짝 줄임 */
             font-weight: bold;
             margin: 0;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* 텍스트 그림자 추가 */
         }
 
         .hero p {
-            font-size: 18px;
+            font-size: 20px; /* 텍스트 크기 살짝 키움 */
             margin-top: 20px;
+            color: #555; /* 부드러운 색상 */
         }
 
+        /* Content Section */
         .content {
             display: flex;
             justify-content: space-around;
@@ -96,7 +95,6 @@
         .Title {
             font-size: 25px;
             font-weight: bold;
-            text-decoration: none;
             color: green;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
@@ -106,61 +104,36 @@
             margin: 0 auto;
         }
 
+        /* 테이블 디자인 개선 */
         table {
             width: 100%;
             border-collapse: collapse;
             table-layout: auto;
+            background-color: #fafafa;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
         }
 
         th {
-            padding: 10px;
-            text-align: center;
-            border: 5px solid #ddd;
-            background-color: #f2f2f2;
+            background-color: #007BFF;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
         }
 
         td {
-            position: relative;
+            font-size: 16px;
+            color: #333;
         }
 
-        th:nth-child(1) { /* 일련번호 */
-            width: 5%;
-        }
-
-        th:nth-child(2) { /* 탐지 일자 */
-            width: 15%;
-            word-wrap: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        th:nth-child(3), td:nth-child(4) { /* 위도, 경도 */
-            width: 15%;
-        }
-
-        th:nth-child(5){ /* 주소 */
-            width: 30%;
-        }
-
-        th:nth-child(6) { /* 상태 */
-            width: 10%;
-        }
-
-        th:nth-child(7) { /* 이미지 */
-            width: 10%;
-        }
-        .table-border {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-
-        .table-border th,
-        .table-border td {
-            border: 1px solid black;
-        }
         .pagination {
             display: flex;
-            justify-content: center; /* 중앙 정렬 */
+            justify-content: center;
             margin-top: 20px;
         }
 
@@ -174,14 +147,17 @@
         .pagination li {
             display: inline;
         }
+
         .pagination a {
             text-decoration: none;
             color: black;
-            padding: 10px;
+            padding: 10px 15px;
             border: 1px solid #ddd;
             background-color: #f2f2f2;
             border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         .pagination a:hover {
             background-color: #007BFF;
             color: white;
@@ -191,33 +167,34 @@
             background-color: #007BFF;
             color: white;
         }
-        .tbody{
-            height: 500px;
+
+        /* 이미지 스타일 및 애니메이션 */
+        .hover-image {
+            width: auto;
+            height: auto;
+            max-width: 500px;
+            max-height: 500px;
+            position: static;
+            display: none;
+            transition: opacity 0.5s ease; /* 애니메이션 추가 */
         }
+
+        /* 신고 현황 박스 */
         .report {
-            border: 2px solid #007BFF; /* 테두리 설정 */
-            padding: 20px;             /* 내부 여백 */
-            border-radius: 10px;       /* 모서리 둥글게 */
-            background-color: #f9f9f9; /* 배경색 설정 */
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
-            margin-top: 20px;          /* 위쪽 여백 */
-            width: 80%;                /* 가로 크기 조정 */
+            border: 2px solid #007BFF;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            width: 80%;
             margin-left: 0;
             font-size: 20px;
         }
-        .report div {
-            margin-bottom: 10px; /* 각 행 사이의 간격 */
-        }
-        .hover-image {
-            width: auto; /* 너비를 자동으로 설정하여 원본 크기 유지 */
-            height: auto; /* 높이도 자동으로 설정하여 원본 비율 유지 */
-            max-width: 500px; /* 최대 너비를 100%로 설정하여 부모 요소를 넘지 않도록 */
-            max-height: 500px; /* 최대 높이도 100%로 설정하여 부모 요소를 넘지 않도록 */
-            position: static; /* 절대 위치 */
-            z-index: 1; /* 이미지가 이름 위에 나타나도록 설정 */
-            display: none; /* 기본적으로 숨김 */
-        }
 
+        .report div {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -231,7 +208,6 @@
             <span style="color:darkgreen" th:text="${username}"></span>님 환영합니다
         </a>
         <a th:href="@{/pothole/manage}">포트홀 관리</a>
-        <a th:href="@{/pothole/stats}">통계</a>
         <a th:href="@{/user/account}">개인정보수정</a>
         <a th:href="@{/user/login}">로그아웃</a>
     </nav>
