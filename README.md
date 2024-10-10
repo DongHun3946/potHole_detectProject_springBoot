@@ -35,13 +35,11 @@
 
 ## 📝 구현(화면 구성)
 - 로그인 화면
-- https://github.com/user-attachments/assets/f67b2dfa-b0c8-434f-b895-815eef335895
+https://github.com/user-attachments/assets/43876eef-ec92-450a-8033-79b1832a5af6
 
-  
-회원가입 화면
-
-- https://github.com/user-attachments/assets/99c6efb7-0d0e-4d1e-9539-026647b7f46a
-  
+- 회원가입 화면
+https://github.com/user-attachments/assets/3e681ed0-0122-4738-9823-36a9171e4d13
+ 
 아이디찾기 화면
 - https://github.com/user-attachments/assets/9ec2cb4b-0dcf-4d2a-b517-e4beadf21e0a
 
