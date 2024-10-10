@@ -37,11 +37,12 @@
 - 로그인 화면
 - https://github.com/user-attachments/assets/57e62e92-d949-451b-89dd-917539d341ea
 
-
-
 - 회원가입 화면
+- https://github.com/user-attachments/assets/b6fd44f6-4d69-4787-bd18-d3b8b2540f92
 
 - 아이디 찾기 화면
+- https://github.com/user-attachments/assets/5a588aff-ee7f-47e4-90dc-c3e0df1954bb
+
 
 - 비밀번호 찾기 화면
 
