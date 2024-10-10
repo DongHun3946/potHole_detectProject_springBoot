@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/49889001-d8fd-4c60-87ed-d1c35eccca59
 # 캡스톤디자인_포트홀 탐지 및 자동신고 시스템
 
 ## 👨‍🏫 프로젝트 소개
