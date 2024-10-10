@@ -35,16 +35,16 @@
 
 ## 📝 구현(화면 구성)
 - 로그인 화면
-https://github.com/user-attachments/assets/bcd5fc11-243a-4345-af17-b822491cc478
+![login](https://github.com/user-attachments/assets/a38acdd8-7e4b-4d32-a2ce-ad9e3414af65)
 
 - 회원가입 화면
-https://github.com/user-attachments/assets/b4bb26c4-dcf7-4ae9-9fc3-52379b929d98
 
-
-
-
+- 아이디 찾기 화면
 
 - 비밀번호 찾기 화면
+
+
+
   
 
 ## 📌 주요 기능
