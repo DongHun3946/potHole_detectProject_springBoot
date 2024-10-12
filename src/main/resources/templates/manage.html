@@ -222,7 +222,7 @@
         }
 
         #nav-bottom {
-            background-color: deepskyblue;
+            background-color: lightskyblue;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -241,7 +241,7 @@
         }
 
         #header {
-            background-color: palegoldenrod;
+            background-color: lightgray;
             color: black;
             font-weight: bold;
             text-align: right;
@@ -270,7 +270,6 @@
             <span style="color:darkgreen" th:text="${username}"></span>님 환영합니다
         </a>
         <a class="nav" th:href="@{/pothole/manage}">포트홀 관리</a>
-        <a class="nav" th:href="@{/pothole/stats}">통계</a>
         <a class="nav" th:href="@{/user/login}">로그아웃</a>
     </nav>
 </header>
