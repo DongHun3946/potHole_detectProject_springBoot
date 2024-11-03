@@ -44,7 +44,7 @@
 - https://github.com/user-attachments/assets/5a588aff-ee7f-47e4-90dc-c3e0df1954bb
 
 - 비밀번호 찾기 화면
-- 
+- https://github.com/user-attachments/assets/b708ce1e-330a-4a73-bd19-4351cd1bce7a
 
 - 메인화면(유저)
 - 
