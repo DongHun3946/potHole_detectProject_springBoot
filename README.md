@@ -47,21 +47,13 @@
 - https://github.com/user-attachments/assets/b708ce1e-330a-4a73-bd19-4351cd1bce7a
 
 - 메인화면(유저)
-- 
-
-- 메인화면(관리자)
-- 
+- https://github.com/user-attachments/assets/78218a70-a637-465a-975d-e6d001ebeb2e
 
 - 포트홀 관리 화면(관리자)
--
+- https://github.com/user-attachments/assets/e0652dc1-46dc-4680-a8e8-98cac2991b2a
 
 - 개인정보 수정 화면
-
-
-
-
-
-  
+- https://github.com/user-attachments/assets/d900aa2d-8b52-4078-a036-156f677c31de
 
 ## 📌 주요 기능
 1. 포트홀 탐지 기능
