@@ -20,7 +20,7 @@
 - DataBase : Amazon RDS(mysql)
 - WS/WAS : Tomcat
 ## 📝 프로젝트 아키텍쳐
-![image](https://github.com/user-attachments/assets/b81af55b-b2ee-42a5-b36a-88648d86acf5)
+![system2 drawio (1)](https://github.com/user-attachments/assets/e4168fc7-038f-459b-9318-10047b0acd44)
 
 
 ## 📝 와이어프레임(화면 구성)
