@@ -11,6 +11,4 @@ public interface PotholeRepository extends JpaRepository<Pothole, Integer> {
     Page<Pothole> findByState(String state, Pageable pageable);
     Integer countByUserAndStateContaining(User user, String keyword);
     Optional<Pothole> findById(Integer id);
-
-
 }
