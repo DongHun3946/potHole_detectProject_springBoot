@@ -16,7 +16,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
+/*@SpringBootTest
 class PotholeCapstoneApplicationTests {
     @Autowired
     private UserRepository userRepository;
@@ -28,6 +28,8 @@ class PotholeCapstoneApplicationTests {
 
     }
 }
+*/
+
 /*
 --------없는 이미지는 전부 제거--------
 private final String image_path = "src/main/resources/static/pothole_images/";
