@@ -22,10 +22,15 @@ class PotholeCapstoneApplicationTests {
     @Autowired
     private PotholeRepository potholeRepository;
 
-    private final String image_path = "src/main/resources/static/pothole_images/";
     @Test
     void contextLoads() {
-        List<Pothole> ods = this.potholeRepository.findAll();
+
+    }
+}
+/*
+--------없는 이미지는 전부 제거--------
+private final String image_path = "src/main/resources/static/pothole_images/";
+List<Pothole> ods = this.potholeRepository.findAll();
         File file = new File(image_path);
         File[] files = file.listFiles();
 
@@ -45,9 +50,7 @@ class PotholeCapstoneApplicationTests {
                 this.potholeRepository.delete(pothole);
             }
         }
-    }
-}
-/*
+---------------------------
 --------데이터 저장---------
 User p = User.builder()
     .username("매니저")
