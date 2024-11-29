@@ -17,7 +17,6 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@ActiveProfiles("test")
 class PotholeCapstoneApplicationTests {
     @Autowired
     private UserRepository userRepository;
