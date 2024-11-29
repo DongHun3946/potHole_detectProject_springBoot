@@ -10,9 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.swing.text.html.Option;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.io.File;
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PotholeCapstoneApplicationTests {
@@ -23,12 +24,33 @@ class PotholeCapstoneApplicationTests {
 
     @Test
     void contextLoads() {
-        Optional<Pothole> oa = this.potholeRepository.findById(24);
-        Pothole pothole = oa.get();
-        this.potholeRepository.delete(pothole);
+
     }
 }
 /*
+--------없는 이미지는 전부 제거--------
+private final String image_path = "src/main/resources/static/pothole_images/";
+List<Pothole> ods = this.potholeRepository.findAll();
+        File file = new File(image_path);
+        File[] files = file.listFiles();
+
+        for(Pothole pothole : ods){
+            int index = 0;
+            String imageFileName = pothole.getImagePath();
+            if(files!=null){
+                for(File oa : files){
+                    String fileName = oa.getName();
+                    if (imageFileName.equals(fileName)) {
+                        index = 1;
+                        break;
+                    }
+                }
+            }
+            if(index == 0){
+                this.potholeRepository.delete(pothole);
+            }
+        }
+---------------------------
 --------데이터 저장---------
 User p = User.builder()
     .username("매니저")

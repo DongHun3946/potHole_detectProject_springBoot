@@ -18,7 +18,7 @@ public class PotholeService {
         return this.potholeRepository.findByUser(user, pageable);
     }
     public Page<Pothole> getListAll(int page){
-        Pageable pageable = PageRequest.of(page, 15);
+        Pageable pageable = PageRequest.of(page, 12);
         return this.potholeRepository.findAll(pageable);
     }
     public List<Integer> getCount(User user, String keyword){
@@ -31,7 +31,7 @@ public class PotholeService {
         return oa;
     }
     public Page<Pothole> getSelectList(String state, int page){
-        Pageable pageable = PageRequest.of(page, 15);
+        Pageable pageable = PageRequest.of(page, 12);
         Page<Pothole> oa = null;
         switch (state) {
             case "1":
@@ -69,13 +69,6 @@ public class PotholeService {
                     .state(state)
                     .build();
             this.potholeRepository.save(pothole);
-        }
-    }
-    public void deletePothole(Integer id){
-        Optional<Pothole> oa = this.potholeRepository.findById(id);
-        if(oa.isPresent()){
-            Pothole pothole = oa.get();
-            this.potholeRepository.delete(pothole);
         }
     }
 }
