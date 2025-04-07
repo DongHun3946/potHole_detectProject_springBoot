@@ -34,8 +34,14 @@
   ![image](https://github.com/user-attachments/assets/d70d5247-068c-4ec5-bdc9-7df6de064efa)
 - 포트홀 관리 화면
   ![image](https://github.com/user-attachments/assets/a9700d45-37d8-4ee2-b8ce-dc1bde25b06a)
+## 📝 구현(이미지)
+- 메인화면(사용자 시점)
+  ![메인화면](https://github.com/user-attachments/assets/5ee5ef48-ce8b-40a8-ad48-4ec7309d617f)
 
-## 📝 구현(화면 구성)
+- 관리화면(관리자 시점)
+  ![관리자시점관리화면](https://github.com/user-attachments/assets/a471e5f1-9a53-41c2-9fd3-bf754b573e28)
+
+## 📝 구현(동영상)
 - 로그인 화면
 - https://github.com/user-attachments/assets/57e62e92-d949-451b-89dd-917539d341ea
 
