@@ -22,6 +22,8 @@
 ## 📝 프로젝트 아키텍쳐
 ![system2 drawio (1)](https://github.com/user-attachments/assets/e4168fc7-038f-459b-9318-10047b0acd44)
 
+## 📝 현장 테스트
+![20210127_150057_HDR](https://github.com/user-attachments/assets/032f79ae-d76d-481b-801e-242da2f1ddb8)
 
 ## 📝 와이어프레임(화면 구성)
 - 로그인 화면
